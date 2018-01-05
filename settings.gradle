@@ -1,1 +1,1 @@
-include ':MyDefineView'
+include ':MyDefineView', ':test'
