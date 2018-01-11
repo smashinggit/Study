@@ -22,6 +22,8 @@
 
         <activity android:name=".SearchActivity" />
         <activity android:name=".ZipActivity" />
+        <activity android:name=".PollingActivity" />
+        <activity android:name=".RetryWhenActivity" />
     </application>
 
 </manifest>

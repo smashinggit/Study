@@ -26,11 +26,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, ZipActivity::class.java))
         }
 
+        btnPolling.setOnClickListener {
+            startActivity(Intent(this, PollingActivity::class.java))
+        }
 
+        btnRetry.setOnClickListener {
+            startActivity(Intent(this, RetryWhenActivity::class.java))
+        }
 
         test()
-
-
     }
 
     private fun test() {
