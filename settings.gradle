@@ -1,1 +1,1 @@
-include ':MyDefineView', ':test', ':Rxjava2Demo'
+include ':MyDefineView', ':test', ':Rxjava2Demo', ':notificationdemo'
