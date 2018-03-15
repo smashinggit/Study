@@ -1,4 +1,4 @@
-package com.cs.test
+package com.cs.camerademo
 
 import org.junit.Test
 

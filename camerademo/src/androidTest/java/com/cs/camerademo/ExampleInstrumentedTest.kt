@@ -1,4 +1,4 @@
-package com.cs.test
+package com.cs.camerademo
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.cs.test", appContext.packageName)
+        assertEquals("com.cs.camerademo", appContext.packageName)
     }
 }
