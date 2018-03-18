@@ -3,6 +3,7 @@ package com.cs.camerademo.util
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import java.io.ByteArrayOutputStream
 import java.io.OutputStream
 
@@ -13,6 +14,24 @@ import java.io.OutputStream
  * desc:
  */
 object BitmapUtils {
+
+    fun toByteArray(bitmap: Bitmap): ByteArray {
+        var os = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
+        return os.toByteArray()
+    }
+
+    fun mirror(rawBitmap: Bitmap): Bitmap {
+        var matrix = Matrix()
+        matrix.postScale(-1f, 1f)
+        return Bitmap.createBitmap(rawBitmap, 0, 0, rawBitmap.width, rawBitmap.height, matrix, true)
+    }
+
+    fun rotate(rawBitmap: Bitmap, degree: Float): Bitmap {
+        var matrix = Matrix()
+        matrix.postRotate(degree)
+        return Bitmap.createBitmap(rawBitmap, 0, 0, rawBitmap.width, rawBitmap.height, matrix, true)
+    }
 
     fun decodeBitmap(bitmap: Bitmap, reqWidth: Int, reqHeight: Int): Bitmap {
         var options = BitmapFactory.Options()

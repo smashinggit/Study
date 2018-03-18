@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.hardware.Camera
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -12,11 +11,11 @@ import android.provider.MediaStore
 import android.support.v4.content.FileProvider
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import com.cs.camerademo.util.DecodeImgTask
 import com.cs.camerademo.util.FileUtil
 import kotlinx.android.synthetic.main.activity_capture.*
 import java.io.File
-import android.os.StrictMode
 
 
 /**
@@ -30,8 +29,11 @@ class CaptureActivity : AppCompatActivity() {
 
         val REQUEST_CODE_CAPTURE_SMALL = 1
         val REQUEST_CODE_CAPTURE_RAW = 2
-        val REQUEST_CODE_CAPTURE_CROP = 3
-        val REQUEST_CODE_CROP = 4
+        val REQUEST_CODE_CAPTURE = 3
+        val REQUEST_CODE_CAPTURE_CROP = 4
+        val REQUEST_CODE_ALBUM = 5
+        val REQUEST_CODE_ALBUM_CROP = 6
+        val REQUEST_CODE_VIDEO = 7
 
         var imgUri: Uri? = null
         var imageFile: File? = null
@@ -45,6 +47,8 @@ class CaptureActivity : AppCompatActivity() {
         btnCaptureSmall.setOnClickListener { gotoCaptureSmall() }    //拍照(返回缩略图)
         btnCaptureRaw.setOnClickListener { gotoCaptureRaw() }        //拍照(返回原始图)
         btnCaptureAndClip.setOnClickListener { gotoCaptureCrop() }   //拍照 + 裁切
+        btnAlbumAndClip.setOnClickListener { gotoGallery() }   //拍照 + 裁切
+        btnCaptureVideo.setOnClickListener { gotoCaptureVideo() }   //录视频 + 播放
     }
 
 
@@ -94,13 +98,13 @@ class CaptureActivity : AppCompatActivity() {
 
             intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString())
             intent.resolveActivity(packageManager)?.let {
-                startActivityForResult(intent, REQUEST_CODE_CAPTURE_CROP)
+                startActivityForResult(intent, REQUEST_CODE_CAPTURE)
             }
         }
     }
 
     //裁剪
-    private fun gotoCrop() {
+    private fun gotoCrop(sourceUri: Uri) {
         imageCropFile = FileUtil.createImageFile(true)
         imageCropFile?.let {
 
@@ -116,22 +120,33 @@ class CaptureActivity : AppCompatActivity() {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) //添加这一句表示对目标应用临时授权该Uri所代表的文件
-
-                var sourceUri = FileProvider.getUriForFile(this, AUTHORITY, imageFile) //通过FileProvider创建一个content类型的Uri
                 intent.setDataAndType(sourceUri, "image/*")  //设置数据源
 
                 var imgCropUri = Uri.fromFile(it)
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imgCropUri) //设置输出  不需要ContentUri,否则失败
-                Log.d("tag", "输入 ${Uri.fromFile(imageFile!!)}")
+                Log.d("tag", "输入 $sourceUri")
                 Log.d("tag", "输出 ${Uri.fromFile(it)}")
             } else {
                 intent.setDataAndType(Uri.fromFile(imageFile!!), "image/*")
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(it))
             }
-
-            startActivityForResult(intent, REQUEST_CODE_CROP)
+            startActivityForResult(intent, REQUEST_CODE_CAPTURE_CROP)
         }
+    }
 
+
+    //打开系统相册
+    private fun gotoGallery() {
+        var intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, REQUEST_CODE_ALBUM)
+    }
+
+
+    //录制视频
+    private fun gotoCaptureVideo() {
+        var intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
+        if (intent.resolveActivity(packageManager) != null)
+            startActivityForResult(intent, REQUEST_CODE_VIDEO)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -150,13 +165,30 @@ class CaptureActivity : AppCompatActivity() {
                     }
                 }
 
-                REQUEST_CODE_CAPTURE_CROP -> { //拍照成功后，裁剪
-                    gotoCrop()
+                REQUEST_CODE_CAPTURE -> { //拍照成功后，裁剪
+                    var sourceUri = FileProvider.getUriForFile(this, AUTHORITY, imageFile) //通过FileProvider创建一个content类型的Uri
+                    gotoCrop(sourceUri)
                 }
 
-                REQUEST_CODE_CROP -> {   //裁剪成功后，显示结果
+                REQUEST_CODE_CAPTURE_CROP -> {   //裁剪成功后，显示结果
                     imageCropFile?.let {
                         ivResult.setImageBitmap(BitmapFactory.decodeFile(it.absolutePath))
+                    }
+                }
+
+                REQUEST_CODE_ALBUM -> { //从相册选择照片后，裁剪
+                    data?.let {
+                        gotoCrop(it.data)
+                    }
+                }
+
+                REQUEST_CODE_VIDEO -> {   //录制视频成功后播放
+                    data?.let {
+                        var uri = it.data
+                        videoView.visibility = View.VISIBLE
+                        videoView.setVideoURI(uri)
+                        videoView.start()
+                        Log.d("tag", "视频uri $uri")
                     }
                 }
             }
@@ -170,5 +202,10 @@ class CaptureActivity : AppCompatActivity() {
 //    而是要FileProvider.getUriForFile(activity, Constants.FILE_CONTENT_FILEPROVIDER, file);
 //    但是裁剪的时候就不一样，裁剪继续使用 Uri.fromFile(file)。
 
+    override fun onStop() {
+        if (videoView.isPlaying)
+            videoView.pause()
+        super.onStop()
+    }
 
 }

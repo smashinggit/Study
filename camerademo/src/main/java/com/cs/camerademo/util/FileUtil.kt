@@ -1,10 +1,7 @@
 package com.cs.camerademo.util
 
-import android.content.ContentValues
-import android.content.Context
-import android.net.Uri
+import android.annotation.SuppressLint
 import android.os.Environment
-import android.provider.MediaStore
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,13 +17,28 @@ object FileUtil {
 
     fun createImageFile(isCrop: Boolean = false): File? {
         return try {
-            var rootFile = File(rootFolderPath)
+            var rootFile = File(rootFolderPath + File.separator + "capture")
             if (!rootFile.exists())
                 rootFile.mkdirs()
 
             val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
             val fileName = if (isCrop) "IMG_${timeStamp}_CROP.jpg" else "IMG_$timeStamp.jpg"
-            File(rootFolderPath + File.separator + fileName)
+            File(rootFile.absolutePath + File.separator + fileName)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    fun createCameraFile(): File? {
+        return try {
+            var rootFile = File(rootFolderPath + File.separator + "camera1")
+            if (!rootFile.exists())
+                rootFile.mkdirs()
+
+            val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+            val fileName = "IMG_$timeStamp.jpg"
+            File(rootFile.absolutePath + File.separator + fileName)
         } catch (e: Exception) {
             e.printStackTrace()
             null

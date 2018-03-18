@@ -1,8 +1,9 @@
 package com.cs.camerademo
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import com.cs.camerademo.camera1.CameraActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,5 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btCapture.setOnClickListener { startActivity(Intent(this, CaptureActivity::class.java)) }
+        btCamera.setOnClickListener { startActivity(Intent(this, CameraActivity::class.java)) }
     }
 }
