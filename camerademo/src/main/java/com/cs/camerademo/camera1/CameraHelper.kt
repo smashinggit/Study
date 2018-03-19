@@ -17,6 +17,7 @@ import android.widget.Toast
 class CameraHelper : Camera.PreviewCallback {
 
     private var mCamera: Camera? = null
+    private lateinit var mParameters: Camera.Parameters
     private var mSurfaceView: SurfaceView
     private var mSurfaceHolder: SurfaceHolder
     private var mActivity: Activity
@@ -68,6 +69,7 @@ class CameraHelper : Camera.PreviewCallback {
         })
     }
 
+    //打开相机
     private fun openCamera(cameraFacing: Int = Camera.CameraInfo.CAMERA_FACING_BACK): Boolean {
         var supportCameraFacing = supportCameraFacing(cameraFacing)
         if (supportCameraFacing) {
@@ -84,25 +86,36 @@ class CameraHelper : Camera.PreviewCallback {
         return supportCameraFacing
     }
 
+    //配置相机参数
     private fun initParameters(camera: Camera) {
         try {
-            val parameters = camera.parameters
-            parameters.previewFormat = ImageFormat.NV21
-            val bestPreviewSize = getBestSize(mSurfaceView.width, mSurfaceView.height, parameters.supportedPreviewSizes)
+            mParameters = camera.parameters
+            mParameters.previewFormat = ImageFormat.NV21
+
+            //获取与指定宽高相等或最接近的尺寸
+            //设置预览尺寸
+            val bestPreviewSize = getBestSize(mSurfaceView.width, mSurfaceView.height, mParameters.supportedPreviewSizes)
             bestPreviewSize?.let {
-                parameters.setPreviewSize(it.width, it.height)
+
+                mParameters.setPreviewSize(it.width, it.height)
             }
-            val bestPicSize = getBestSize(picWidth, picHeight, parameters.supportedPictureSizes)
+            //设置保存图片尺寸
+            val bestPicSize = getBestSize(picWidth, picHeight, mParameters.supportedPictureSizes)
             bestPicSize?.let {
-                parameters.setPictureSize(it.width, it.height)
+                mParameters.setPictureSize(it.width, it.height)
             }
-            camera.parameters = parameters
+            //对焦模式
+            if (isSupportFocus(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE))
+                mParameters.focusMode = Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE
+
+            camera.parameters = mParameters
         } catch (e: Exception) {
             e.printStackTrace()
             toast("相机初始化失败!")
         }
     }
 
+    //开始预览
     fun startPreview() {
         mCamera?.let {
             it.setPreviewDisplay(mSurfaceHolder)
@@ -111,6 +124,19 @@ class CameraHelper : Camera.PreviewCallback {
         }
     }
 
+    //判断是否支持某一对焦模式
+    private fun isSupportFocus(focusMode: String): Boolean {
+        var autoFocus = false
+        val listFocusMode = mParameters.supportedFocusModes
+        for (mode in listFocusMode) {
+            if (mode == focusMode)
+                autoFocus = true
+            log("相机支持的对焦模式： " + mode)
+        }
+        return autoFocus
+    }
+
+    //切换摄像头
     fun exchangeCamera() {
         releaseCamera()
         mCameraFacing = if (mCameraFacing == Camera.CameraInfo.CAMERA_FACING_BACK)
@@ -122,6 +148,7 @@ class CameraHelper : Camera.PreviewCallback {
         startPreview()
     }
 
+    //释放相机
     fun releaseCamera() {
         if (mCamera != null) {
             mCamera?.stopPreview()
@@ -131,6 +158,7 @@ class CameraHelper : Camera.PreviewCallback {
         }
     }
 
+    //获取与指定宽高相等或最接近的尺寸
     private fun getBestSize(targetWidth: Int, targetHeight: Int, sizeList: List<Camera.Size>): Camera.Size? {
         var bestSize: Camera.Size? = null
         var targetRatio = (targetHeight.toDouble() / targetWidth)  //目标大小的宽高比
@@ -154,6 +182,7 @@ class CameraHelper : Camera.PreviewCallback {
         return bestSize
     }
 
+    //设置预览旋转的角度
     private fun setCameraDisplayOrientation(activity: Activity) {
         var info = Camera.CameraInfo()
         Camera.getCameraInfo(mCameraFacing, info)
@@ -180,6 +209,7 @@ class CameraHelper : Camera.PreviewCallback {
         log("setDisplayOrientation(result) : $result")
     }
 
+    //判断是否支持某个相机
     private fun supportCameraFacing(cameraFacing: Int): Boolean {
         var info = Camera.CameraInfo()
         for (i in 0 until Camera.getNumberOfCameras()) {

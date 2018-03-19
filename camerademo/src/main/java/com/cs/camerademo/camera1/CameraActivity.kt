@@ -18,7 +18,7 @@ import kotlin.concurrent.thread
  * desc :
  */
 class CameraActivity : BaseActivity() {
-    lateinit var mCameraHelper: CameraHelper
+    private lateinit var mCameraHelper: CameraHelper
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
