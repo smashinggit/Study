@@ -1,6 +1,7 @@
 package com.cs.camerademo.camera1
 
 import android.graphics.BitmapFactory
+import android.graphics.Rect
 import android.hardware.Camera
 import android.os.Bundle
 import android.view.WindowManager
@@ -20,6 +21,8 @@ import kotlin.concurrent.thread
 class CameraActivity : BaseActivity() {
     private lateinit var mCameraHelper: CameraHelper
 
+    private var isFaceDetect = true
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +34,18 @@ class CameraActivity : BaseActivity() {
 
         mCameraHelper = CameraHelper(this, surfaceView)
         mCameraHelper.addCallBack(object : CameraHelper.CallBack {
-            override fun onTakePic(data: ByteArray?, camera: Camera?) {
+            override fun onFaceDetect(faces: Array<Camera.Face>?) {
+                faces?.let {
+                    faceView.setFaces(faces)
+                }
+            }
+
+            override fun onTakePic(data: ByteArray?) {
                 savePic(data)
                 btnTakePic.isClickable = true
             }
 
-            override fun onPreviewFrame(data: ByteArray?, camera: Camera?) {
+            override fun onPreviewFrame(data: ByteArray?) {
             }
         })
     }

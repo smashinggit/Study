@@ -37,14 +37,14 @@ class CameraHelper : Camera.PreviewCallback {
     }
 
     override fun onPreviewFrame(data: ByteArray?, camera: Camera?) {
-        mCallBack?.onPreviewFrame(data, camera)
+        mCallBack?.onPreviewFrame(data)
     }
 
     fun takePic() {
         mCamera?.let {
-            it.takePicture({}, null, { data, camera ->
+            it.takePicture({}, null, { data, _ ->
                 it.startPreview()
-                mCallBack?.onTakePic(data, camera)
+                mCallBack?.onTakePic(data)
             })
         }
     }
@@ -121,7 +121,22 @@ class CameraHelper : Camera.PreviewCallback {
             it.setPreviewDisplay(mSurfaceHolder)
             setCameraDisplayOrientation(mActivity)
             it.startPreview()
+            startFaceDetect()
         }
+    }
+
+    fun startFaceDetect() {
+        mCamera?.let {
+            it.startFaceDetection()
+            it.setFaceDetectionListener { faces, _ ->
+                mCallBack?.onFaceDetect(faces)
+                log("检测到 ${faces.size} 张人脸")
+            }
+        }
+    }
+
+    fun stopFaceDetect() {
+        mCamera?.let { it.stopFaceDetection() }
     }
 
     //判断是否支持某一对焦模式
@@ -151,6 +166,7 @@ class CameraHelper : Camera.PreviewCallback {
     //释放相机
     fun releaseCamera() {
         if (mCamera != null) {
+            mCamera?.stopFaceDetection()
             mCamera?.stopPreview()
             mCamera?.setPreviewCallback(null)
             mCamera?.release()
@@ -233,7 +249,8 @@ class CameraHelper : Camera.PreviewCallback {
     }
 
     interface CallBack {
-        fun onPreviewFrame(data: ByteArray?, camera: Camera?)
-        fun onTakePic(data: ByteArray?, camera: Camera?)
+        fun onPreviewFrame(data: ByteArray?)
+        fun onTakePic(data: ByteArray?)
+        fun onFaceDetect(faces: Array<Camera.Face>?)
     }
 }
