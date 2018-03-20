@@ -1,7 +1,7 @@
 package com.cs.camerademo.camera1
 
 import android.graphics.BitmapFactory
-import android.graphics.Rect
+import android.graphics.RectF
 import android.hardware.Camera
 import android.os.Bundle
 import android.view.WindowManager
@@ -34,10 +34,8 @@ class CameraActivity : BaseActivity() {
 
         mCameraHelper = CameraHelper(this, surfaceView)
         mCameraHelper.addCallBack(object : CameraHelper.CallBack {
-            override fun onFaceDetect(faces: Array<Camera.Face>?) {
-                faces?.let {
-                    faceView.setFaces(faces)
-                }
+            override fun onFaceDetect(faces: ArrayList<RectF>) {
+                faceView.setFaces(faces)
             }
 
             override fun onTakePic(data: ByteArray?) {

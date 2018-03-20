@@ -2,6 +2,9 @@ package com.cs.camerademo.camera1
 
 import android.app.Activity
 import android.graphics.ImageFormat
+import android.graphics.Matrix
+import android.graphics.Rect
+import android.graphics.RectF
 import android.hardware.Camera
 import android.util.Log
 import android.view.Surface
@@ -23,11 +26,10 @@ class CameraHelper : Camera.PreviewCallback {
     private var mActivity: Activity
     private var mCallBack: CallBack? = null
     var mCameraFacing = Camera.CameraInfo.CAMERA_FACING_BACK
+    var mDisplayOrientation: Int = 0
 
-    private var picWidth = 1080        //保存图片的宽
-    private var picHeight = 1920       //保存图片的高
-    private var surfaceViewWidth = 0   //预览区域的宽
-    private var surfaceViewHeight = 0  //预览区域的高
+    private var picWidth = 2160        //保存图片的宽
+    private var picHeight = 3840       //保存图片的高
 
     constructor(activity: Activity, surfaceView: SurfaceView) {
         mSurfaceView = surfaceView
@@ -59,8 +61,6 @@ class CameraHelper : Camera.PreviewCallback {
             }
 
             override fun surfaceCreated(holder: SurfaceHolder?) {
-                surfaceViewWidth = mSurfaceView.width
-                surfaceViewHeight = mSurfaceView.height
                 if (mCamera == null) {
                     openCamera(mCameraFacing)
                 }
@@ -96,7 +96,6 @@ class CameraHelper : Camera.PreviewCallback {
             //设置预览尺寸
             val bestPreviewSize = getBestSize(mSurfaceView.width, mSurfaceView.height, mParameters.supportedPreviewSizes)
             bestPreviewSize?.let {
-
                 mParameters.setPreviewSize(it.width, it.height)
             }
             //设置保存图片尺寸
@@ -125,18 +124,14 @@ class CameraHelper : Camera.PreviewCallback {
         }
     }
 
-    fun startFaceDetect() {
+    private fun startFaceDetect() {
         mCamera?.let {
             it.startFaceDetection()
             it.setFaceDetectionListener { faces, _ ->
-                mCallBack?.onFaceDetect(faces)
+                mCallBack?.onFaceDetect(transform(faces))
                 log("检测到 ${faces.size} 张人脸")
             }
         }
-    }
-
-    fun stopFaceDetect() {
-        mCamera?.let { it.stopFaceDetection() }
     }
 
     //判断是否支持某一对焦模式
@@ -212,17 +207,16 @@ class CameraHelper : Camera.PreviewCallback {
             Surface.ROTATION_270 -> screenDegree = 270
         }
 
-        var result: Int
         if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-            result = (info.orientation + screenDegree) % 360
-            result = (360 - result) % 360          // compensate the mirror
+            mDisplayOrientation = (info.orientation + screenDegree) % 360
+            mDisplayOrientation = (360 - mDisplayOrientation) % 360          // compensate the mirror
         } else {
-            result = (info.orientation - screenDegree + 360) % 360
+            mDisplayOrientation = (info.orientation - screenDegree + 360) % 360
         }
-        mCamera?.setDisplayOrientation(result)
+        mCamera?.setDisplayOrientation(mDisplayOrientation)
 
         log("屏幕的旋转角度 : $rotation")
-        log("setDisplayOrientation(result) : $result")
+        log("setDisplayOrientation(result) : $mDisplayOrientation")
     }
 
     //判断是否支持某个相机
@@ -233,6 +227,29 @@ class CameraHelper : Camera.PreviewCallback {
             if (info.facing == cameraFacing) return true
         }
         return false
+    }
+
+    //将相机中用于表示人脸矩形的坐标转换成UI页面的坐标
+    fun transform(faces: Array<Camera.Face>): ArrayList<RectF> {
+        val matrix = Matrix()
+        // Need mirror for front camera.
+        val mirror = (mCameraFacing == Camera.CameraInfo.CAMERA_FACING_FRONT)
+        matrix.setScale(if (mirror) -1f else 1f, 1f)
+        // This is the value for android.hardware.Camera.setDisplayOrientation.
+        matrix.postRotate(mDisplayOrientation.toFloat())
+        // Camera driver coordinates range from (-1000, -1000) to (1000, 1000).
+        // UI coordinates range from (0, 0) to (width, height).
+        matrix.postScale(mSurfaceView.width / 2000f, mSurfaceView.height / 2000f)
+        matrix.postTranslate(mSurfaceView.width / 2f, mSurfaceView.height / 2f)
+
+        val rectList = ArrayList<RectF>()
+        for (face in faces) {
+            var srcRect = RectF(face.rect)
+            var dstRect = RectF(0f, 0f, 0f, 0f)
+            matrix.mapRect(dstRect, srcRect)
+            rectList.add(dstRect)
+        }
+        return rectList
     }
 
 
@@ -251,6 +268,6 @@ class CameraHelper : Camera.PreviewCallback {
     interface CallBack {
         fun onPreviewFrame(data: ByteArray?)
         fun onTakePic(data: ByteArray?)
-        fun onFaceDetect(faces: Array<Camera.Face>?)
+        fun onFaceDetect(faces: ArrayList<RectF>)
     }
 }

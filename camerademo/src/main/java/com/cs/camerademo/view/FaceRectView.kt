@@ -1,10 +1,7 @@
 package com.cs.camerademo.view
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 import android.hardware.Camera
 import android.util.AttributeSet
 import android.util.Log
@@ -19,7 +16,7 @@ import android.view.View
 class FaceRectView : View {
     lateinit var mPaint: Paint
     private var mCorlor = "#42ed45"
-    var mFaces: Array<Camera.Face>? = null
+    var mFaces: ArrayList<RectF>? = null
 
     constructor(context: Context) : super(context) {
         init()
@@ -46,17 +43,12 @@ class FaceRectView : View {
         super.onDraw(canvas)
         mFaces?.let {
             for (face in it) {
-                var rawRect = face.rect
-                var adjustRect = Rect(width-rawRect.top,height- rawRect.left, width-rawRect.bottom, rawRect.right)
-                canvas.drawRect(face.rect, mPaint)
-               // canvas.drawRect(adjustRect, mPaint)
-                Log.d("tag", "${rawRect.left}  ${rawRect.top}  ${rawRect.right}  ${rawRect.bottom}   左眼 ${face.leftEye}  右眼 ${face.rightEye} 嘴巴${face.mouth}  可信度 ${face.score} ")
-                Log.d("tag", "${adjustRect.left}  ${adjustRect.top}  ${adjustRect.right}  ${adjustRect.bottom}   ")
+                canvas.drawRect(face, mPaint)
             }
         }
     }
 
-    fun setFaces(faces: Array<Camera.Face>) {
+    fun setFaces(faces: ArrayList<RectF>) {
         this.mFaces = faces
         invalidate()
     }
