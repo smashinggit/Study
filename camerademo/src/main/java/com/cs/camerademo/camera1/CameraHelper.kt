@@ -261,6 +261,8 @@ class CameraHelper : Camera.PreviewCallback {
         Log.e("tag", msg)
     }
 
+    fun getCamera():Camera? = mCamera
+
     fun addCallBack(callBack: CallBack) {
         this.mCallBack = callBack
     }

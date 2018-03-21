@@ -26,7 +26,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Camera" />
+            android:text="Camera 拍照" />
+
+        <Button
+            android:id="@+id/btCameraRecord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Camera 录视频" />
     </GridLayout>
 
 

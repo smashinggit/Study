@@ -4,6 +4,7 @@ import android.graphics.BitmapFactory
 import android.graphics.RectF
 import android.hardware.Camera
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import com.cs.camerademo.BaseActivity
 import com.cs.camerademo.R
@@ -19,18 +20,21 @@ import kotlin.concurrent.thread
  * desc :
  */
 class CameraActivity : BaseActivity() {
+    companion object {
+        val TYPE_TAG = "type"
+        val TYPE_CAPTURE = 0
+        val TYPE_RECORD = 1
+    }
+
+    var lock = false //控制MediaRecorderHelper的初始化
+
     private lateinit var mCameraHelper: CameraHelper
-
-    private var isFaceDetect = true
-
+    private var mMediaRecorderHelper: MediaRecorderHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
-        btnTakePic.setOnClickListener { mCameraHelper.takePic() }
-        ivExchange.setOnClickListener { mCameraHelper.exchangeCamera() }
 
         mCameraHelper = CameraHelper(this, surfaceView)
         mCameraHelper.addCallBack(object : CameraHelper.CallBack {
@@ -44,8 +48,34 @@ class CameraActivity : BaseActivity() {
             }
 
             override fun onPreviewFrame(data: ByteArray?) {
+                if (!lock) {
+                    mCameraHelper.getCamera()?.let {
+                        mMediaRecorderHelper = MediaRecorderHelper(it)
+                    }
+                    lock
+                }
             }
         })
+
+        if (intent.getIntExtra(TYPE_TAG, 0) == TYPE_RECORD) { //录视频
+            btnTakePic.visibility = View.GONE
+            btnStart.visibility = View.VISIBLE
+        }
+
+        btnTakePic.setOnClickListener { mCameraHelper.takePic() }
+        ivExchange.setOnClickListener { mCameraHelper.exchangeCamera() }
+        btnStart.setOnClickListener {
+            ivExchange.isClickable = false
+            btnStart.visibility = View.GONE
+            btnStop.visibility = View.VISIBLE
+            mMediaRecorderHelper?.startRecord()
+        }
+        btnStop.setOnClickListener {
+            btnStart.visibility = View.VISIBLE
+            btnStop.visibility = View.GONE
+            ivExchange.isClickable = true
+            mMediaRecorderHelper?.stopRecord()
+        }
     }
 
     private fun savePic(data: ByteArray?) {
@@ -77,6 +107,7 @@ class CameraActivity : BaseActivity() {
 
     override fun onDestroy() {
         mCameraHelper.releaseCamera()
+        mMediaRecorderHelper?.release()
         super.onDestroy()
     }
 

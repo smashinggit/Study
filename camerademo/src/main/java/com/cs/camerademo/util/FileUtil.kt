@@ -45,4 +45,19 @@ object FileUtil {
         }
     }
 
+    fun createVideoFile(): File? {
+        return try {
+            var rootFile = File(rootFolderPath + File.separator + "video")
+            if (!rootFile.exists())
+                rootFile.mkdirs()
+
+            val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+            val fileName = "VIDEO_$timeStamp.3gp"
+            File(rootFile.absolutePath + File.separator + fileName)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
 }
