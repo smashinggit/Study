@@ -22,7 +22,7 @@ class CameraHelper : Camera.PreviewCallback {
     private var mCamera: Camera? = null
     private lateinit var mParameters: Camera.Parameters
     private var mSurfaceView: SurfaceView
-    private var mSurfaceHolder: SurfaceHolder
+    var mSurfaceHolder: SurfaceHolder
     private var mActivity: Activity
     private var mCallBack: CallBack? = null
     var mCameraFacing = Camera.CameraInfo.CAMERA_FACING_BACK
@@ -161,7 +161,7 @@ class CameraHelper : Camera.PreviewCallback {
     //释放相机
     fun releaseCamera() {
         if (mCamera != null) {
-            mCamera?.stopFaceDetection()
+            // mCamera?.stopFaceDetection()
             mCamera?.stopPreview()
             mCamera?.setPreviewCallback(null)
             mCamera?.release()
@@ -261,7 +261,7 @@ class CameraHelper : Camera.PreviewCallback {
         Log.e("tag", msg)
     }
 
-    fun getCamera():Camera? = mCamera
+    fun getCamera(): Camera? = mCamera
 
     fun addCallBack(callBack: CallBack) {
         this.mCallBack = callBack

@@ -52,7 +52,7 @@ object FileUtil {
                 rootFile.mkdirs()
 
             val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-            val fileName = "VIDEO_$timeStamp.3gp"
+            val fileName = "VIDEO_$timeStamp.mp4"
             File(rootFile.absolutePath + File.separator + fileName)
         } catch (e: Exception) {
             e.printStackTrace()

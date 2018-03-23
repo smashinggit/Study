@@ -6,6 +6,7 @@ import android.hardware.Camera
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import com.cs.camerademo.BaseActivity
 import com.cs.camerademo.R
 import com.cs.camerademo.util.BitmapUtils
@@ -50,9 +51,9 @@ class CameraActivity : BaseActivity() {
             override fun onPreviewFrame(data: ByteArray?) {
                 if (!lock) {
                     mCameraHelper.getCamera()?.let {
-                        mMediaRecorderHelper = MediaRecorderHelper(it)
+                        mMediaRecorderHelper = MediaRecorderHelper(this@CameraActivity, mCameraHelper.getCamera()!!, mCameraHelper.mDisplayOrientation, mCameraHelper.mSurfaceHolder.surface)
                     }
-                    lock
+                    lock = true
                 }
             }
         })
@@ -107,7 +108,11 @@ class CameraActivity : BaseActivity() {
 
     override fun onDestroy() {
         mCameraHelper.releaseCamera()
-        mMediaRecorderHelper?.release()
+        mMediaRecorderHelper?.let {
+            if (it.isRunning)
+                it.stopRecord()
+            it.release()
+        }
         super.onDestroy()
     }
 
