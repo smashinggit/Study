@@ -32,8 +32,7 @@ class CaptureActivity : AppCompatActivity() {
         val REQUEST_CODE_CAPTURE = 3
         val REQUEST_CODE_CAPTURE_CROP = 4
         val REQUEST_CODE_ALBUM = 5
-        val REQUEST_CODE_ALBUM_CROP = 6
-        val REQUEST_CODE_VIDEO = 7
+        val REQUEST_CODE_VIDEO = 6
 
         var imgUri: Uri? = null
         var imageFile: File? = null
@@ -155,6 +154,7 @@ class CaptureActivity : AppCompatActivity() {
             when (requestCode) {
 
                 REQUEST_CODE_CAPTURE_SMALL -> {
+                    data?.data
                     val bitmap = data?.extras?.get("data") as Bitmap
                     ivResult.setImageBitmap(bitmap)
                 }
@@ -166,7 +166,7 @@ class CaptureActivity : AppCompatActivity() {
                 }
 
                 REQUEST_CODE_CAPTURE -> { //拍照成功后，裁剪
-                    var sourceUri = FileProvider.getUriForFile(this, AUTHORITY, imageFile) //通过FileProvider创建一个content类型的Uri
+                    val sourceUri = FileProvider.getUriForFile(this, AUTHORITY, imageFile) //通过FileProvider创建一个content类型的Uri
                     gotoCrop(sourceUri)
                 }
 

@@ -13,10 +13,10 @@ import android.view.View
  * data  :  2018/3/19
  * desc :
  */
-class FaceRectView : View {
+class FaceView : View {
     lateinit var mPaint: Paint
     private var mCorlor = "#42ed45"
-    var mFaces: ArrayList<RectF>? = null
+    private var mFaces: ArrayList<RectF>? = null
 
     constructor(context: Context) : super(context) {
         init()

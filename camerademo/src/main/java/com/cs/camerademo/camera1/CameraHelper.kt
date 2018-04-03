@@ -17,26 +17,21 @@ import android.widget.Toast
  * data  :  2018/3/17
  * desc :
  */
-class CameraHelper : Camera.PreviewCallback {
+class CameraHelper(activity: Activity, surfaceView: SurfaceView) : Camera.PreviewCallback {
 
-    private var mCamera: Camera? = null
-    private lateinit var mParameters: Camera.Parameters
-    private var mSurfaceView: SurfaceView
-    var mSurfaceHolder: SurfaceHolder
-    private var mActivity: Activity
-    private var mCallBack: CallBack? = null
-    var mCameraFacing = Camera.CameraInfo.CAMERA_FACING_BACK
-    var mDisplayOrientation: Int = 0
+    private var mCamera: Camera? = null                   //Camera对象
+    private lateinit var mParameters: Camera.Parameters   //Camera对象的参数
+    private var mSurfaceView: SurfaceView = surfaceView   //用于预览的SurfaceView对象
+    var mSurfaceHolder: SurfaceHolder                     //SurfaceHolder对象
+
+    private var mActivity: Activity = activity
+    private var mCallBack: CallBack? = null   //自定义的回调
+
+    var mCameraFacing = Camera.CameraInfo.CAMERA_FACING_BACK  //摄像头方向
+    var mDisplayOrientation: Int = 0    //预览旋转的角度
 
     private var picWidth = 2160        //保存图片的宽
     private var picHeight = 3840       //保存图片的高
-
-    constructor(activity: Activity, surfaceView: SurfaceView) {
-        mSurfaceView = surfaceView
-        mSurfaceHolder = mSurfaceView.holder
-        mActivity = activity
-        init()
-    }
 
     override fun onPreviewFrame(data: ByteArray?, camera: Camera?) {
         mCallBack?.onPreviewFrame(data)
@@ -128,7 +123,7 @@ class CameraHelper : Camera.PreviewCallback {
         mCamera?.let {
             it.startFaceDetection()
             it.setFaceDetectionListener { faces, _ ->
-                mCallBack?.onFaceDetect(transform(faces))
+                mCallBack?.onFaceDetect(transForm(faces))
                 log("检测到 ${faces.size} 张人脸")
             }
         }
@@ -176,6 +171,11 @@ class CameraHelper : Camera.PreviewCallback {
         var minDiff = targetRatio
 
         for (size in sizeList) {
+            var supportedRatio = (size.width.toDouble() / size.height)
+            log("系统支持的尺寸 : ${size.width} * ${size.height} ,    比例$supportedRatio")
+        }
+
+        for (size in sizeList) {
             if (size.width == targetHeight && size.height == targetWidth) {
                 bestSize = size
                 break
@@ -186,7 +186,6 @@ class CameraHelper : Camera.PreviewCallback {
                 minDiff = Math.abs(supportedRatio - targetRatio)
                 bestSize = size
             }
-            log("系统支持的尺寸 : ${size.width} * ${size.height} ,    比例$supportedRatio")
         }
         log("目标尺寸 ：$targetWidth * $targetHeight ，   比例  $targetRatio")
         log("最优尺寸 ：${bestSize?.height} * ${bestSize?.width}")
@@ -230,7 +229,7 @@ class CameraHelper : Camera.PreviewCallback {
     }
 
     //将相机中用于表示人脸矩形的坐标转换成UI页面的坐标
-    fun transform(faces: Array<Camera.Face>): ArrayList<RectF> {
+    fun transForm(faces: Array<Camera.Face>): ArrayList<RectF> {
         val matrix = Matrix()
         // Need mirror for front camera.
         val mirror = (mCameraFacing == Camera.CameraInfo.CAMERA_FACING_FRONT)
@@ -271,5 +270,10 @@ class CameraHelper : Camera.PreviewCallback {
         fun onPreviewFrame(data: ByteArray?)
         fun onTakePic(data: ByteArray?)
         fun onFaceDetect(faces: ArrayList<RectF>)
+    }
+
+    init {
+        mSurfaceHolder = mSurfaceView.holder
+        init()
     }
 }

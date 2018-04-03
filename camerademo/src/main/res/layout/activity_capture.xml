@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="录视频 + 拍照" />
+            android:text="录视频" />
 
         <ImageView
             android:id="@+id/ivResult"

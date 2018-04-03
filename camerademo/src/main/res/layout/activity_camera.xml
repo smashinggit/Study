@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.cs.camerademo.view.FaceRectView
+    <com.cs.camerademo.view.FaceView
         android:id="@+id/faceView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
