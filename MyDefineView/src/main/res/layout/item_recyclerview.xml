@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff">
+
+    <TextView
+        android:id="@+id/textView_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已签收，签收人凭取货码签巢【自提柜】,期待再次为您服务"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/tvTime_item"
+        android:textSize="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_item"
+        android:layout_marginTop="5dp"
+        android:text="2018-03-04 12:29:19" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/tvTime_item"
+        android:layout_marginTop="10dp"
+        android:background="#ddd" />
+</RelativeLayout>

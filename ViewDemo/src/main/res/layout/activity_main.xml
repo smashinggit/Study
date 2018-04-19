@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.test.viewdemo.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/mView"
+        android:layout_width="400px"
+        android:layout_height="200px"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="this is text">
+
+        <View
+            android:layout_width="400px"
+            android:layout_height="200px"
+            android:background="#ff0" />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btnViewScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="100dp"
+        android:text="View滑动" />
+
+    <Button
+        android:id="@+id/btnDetector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="手势检测" />
+
+    <Button
+        android:id="@+id/btnVelocity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="速度计算" />
+
+    <Button
+        android:id="@+id/btnTouchEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Touch事件分发" />
+
+    <Button
+        android:id="@+id/btnScrollConflict1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="滑动冲突" />
+</LinearLayout>
