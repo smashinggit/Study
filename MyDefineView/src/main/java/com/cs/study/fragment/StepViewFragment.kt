@@ -13,6 +13,7 @@ import android.widget.TextView
 import com.cs.study.R
 import com.cs.study.view.stepview.StepViewItemDecoration
 import kotlinx.android.synthetic.main.fragment_stepview.*
+import java.util.*
 
 class StepViewFragment : Fragment() {
 
@@ -41,6 +42,9 @@ class StepViewFragment : Fragment() {
         timeList.add("2018-03-03 20:45:13")
         timeList.add("2018-03-04 08:55:23")
         timeList.add("2018-03-04 12:28:15")
+
+        Collections.reverse(dataList)
+        Collections.reverse(timeList)
 
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = StepViewAdapter(context, dataList, timeList)

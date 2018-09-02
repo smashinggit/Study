@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/colorAccent"
+    android:layout_height="60dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:textColor="#fff"
+        android:id="@+id/tvText"
+        android:textSize="20dp"
+        android:text="底部"
+        android:gravity="center"
+        android:layout_height="match_parent" />
+
+</android.support.constraint.ConstraintLayout>
