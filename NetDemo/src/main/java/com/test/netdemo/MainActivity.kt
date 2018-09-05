@@ -4,11 +4,16 @@ import android.os.Bundle
 import android.os.Environment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.google.gson.JsonObject
+import com.test.netdemo.http.ApiService
+import com.test.netdemo.http.User
 import com.test.netdemo.intercepter.LoggingInterceptor
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import okio.BufferedSink
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.io.IOException
 import java.util.concurrent.Executors
@@ -52,6 +57,31 @@ class MainActivity : AppCompatActivity() {
         btn6.setOnClickListener {
             postMultipart()    //POST提交Multipart数据
         }
+
+        retrofitTest()
+    }
+
+    private fun retrofitTest() {
+
+        val retrofit = Retrofit.Builder()
+                .baseUrl("https://api.github.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.listRepos("smashinggit")
+
+        call.enqueue(object : retrofit2.Callback<List<User>> {
+            override fun onFailure(call: retrofit2.Call<List<User>>?, t: Throwable?) {
+                log("onResponse ${t?.toString()}")
+
+            }
+
+            override fun onResponse(call: retrofit2.Call<List<User>>?, response: retrofit2.Response<List<User>>?) {
+                log("onResponse ${response?.body()?.get(0)?.name}")
+            }
+
+        })
     }
 
 

@@ -36,12 +36,9 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.4.0'
-
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.google.code.gson:gson:2.8.4'
 
-    compile 'me.drakeet.retrofit2:adapter-agera:2.2.0-beta'
-    compile 'com.google.android.agera:agera:1.4.0'
-
-    compile 'com.google.android.agera:agera:1.4.0'
+    implementation 'me.drakeet.retrofit2:adapter-agera:2.2.0-beta'
+    implementation 'com.google.android.agera:agera:1.4.0'
 }
