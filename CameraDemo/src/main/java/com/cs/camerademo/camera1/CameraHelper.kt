@@ -3,14 +3,13 @@ package com.cs.camerademo.camera1
 import android.app.Activity
 import android.graphics.ImageFormat
 import android.graphics.Matrix
-import android.graphics.Rect
 import android.graphics.RectF
 import android.hardware.Camera
-import android.util.Log
 import android.view.Surface
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.widget.Toast
+import com.cs.camerademo.log
 
 /**
  * author :  chensen
@@ -66,7 +65,7 @@ class CameraHelper(activity: Activity, surfaceView: SurfaceView) : Camera.Previe
 
     //打开相机
     private fun openCamera(cameraFacing: Int = Camera.CameraInfo.CAMERA_FACING_BACK): Boolean {
-        var supportCameraFacing = supportCameraFacing(cameraFacing)
+        val supportCameraFacing = supportCameraFacing(cameraFacing)
         if (supportCameraFacing) {
             try {
                 mCamera = Camera.open(cameraFacing)
@@ -136,7 +135,7 @@ class CameraHelper(activity: Activity, surfaceView: SurfaceView) : Camera.Previe
         for (mode in listFocusMode) {
             if (mode == focusMode)
                 autoFocus = true
-            log("相机支持的对焦模式： " + mode)
+            log("相机支持的对焦模式： $mode")
         }
         return autoFocus
     }
@@ -167,11 +166,11 @@ class CameraHelper(activity: Activity, surfaceView: SurfaceView) : Camera.Previe
     //获取与指定宽高相等或最接近的尺寸
     private fun getBestSize(targetWidth: Int, targetHeight: Int, sizeList: List<Camera.Size>): Camera.Size? {
         var bestSize: Camera.Size? = null
-        var targetRatio = (targetHeight.toDouble() / targetWidth)  //目标大小的宽高比
+        val targetRatio = (targetHeight.toDouble() / targetWidth)  //目标大小的宽高比
         var minDiff = targetRatio
 
         for (size in sizeList) {
-            var supportedRatio = (size.width.toDouble() / size.height)
+            val supportedRatio = (size.width.toDouble() / size.height)
             log("系统支持的尺寸 : ${size.width} * ${size.height} ,    比例$supportedRatio")
         }
 
@@ -181,7 +180,7 @@ class CameraHelper(activity: Activity, surfaceView: SurfaceView) : Camera.Previe
                 break
             }
 
-            var supportedRatio = (size.width.toDouble() / size.height)
+            val supportedRatio = (size.width.toDouble() / size.height)
             if (Math.abs(supportedRatio - targetRatio) < minDiff) {
                 minDiff = Math.abs(supportedRatio - targetRatio)
                 bestSize = size
@@ -194,7 +193,7 @@ class CameraHelper(activity: Activity, surfaceView: SurfaceView) : Camera.Previe
 
     //设置预览旋转的角度
     private fun setCameraDisplayOrientation(activity: Activity) {
-        var info = Camera.CameraInfo()
+        val info = Camera.CameraInfo()
         Camera.getCameraInfo(mCameraFacing, info)
         val rotation = activity.windowManager.defaultDisplay.rotation
 
@@ -220,7 +219,7 @@ class CameraHelper(activity: Activity, surfaceView: SurfaceView) : Camera.Previe
 
     //判断是否支持某个相机
     private fun supportCameraFacing(cameraFacing: Int): Boolean {
-        var info = Camera.CameraInfo()
+        val info = Camera.CameraInfo()
         for (i in 0 until Camera.getNumberOfCameras()) {
             Camera.getCameraInfo(i, info)
             if (info.facing == cameraFacing) return true
@@ -229,7 +228,7 @@ class CameraHelper(activity: Activity, surfaceView: SurfaceView) : Camera.Previe
     }
 
     //将相机中用于表示人脸矩形的坐标转换成UI页面的坐标
-    fun transForm(faces: Array<Camera.Face>): ArrayList<RectF> {
+    private fun transForm(faces: Array<Camera.Face>): ArrayList<RectF> {
         val matrix = Matrix()
         // Need mirror for front camera.
         val mirror = (mCameraFacing == Camera.CameraInfo.CAMERA_FACING_FRONT)
@@ -243,8 +242,8 @@ class CameraHelper(activity: Activity, surfaceView: SurfaceView) : Camera.Previe
 
         val rectList = ArrayList<RectF>()
         for (face in faces) {
-            var srcRect = RectF(face.rect)
-            var dstRect = RectF(0f, 0f, 0f, 0f)
+            val srcRect = RectF(face.rect)
+            val dstRect = RectF(0f, 0f, 0f, 0f)
             matrix.mapRect(dstRect, srcRect)
             rectList.add(dstRect)
         }
@@ -254,10 +253,6 @@ class CameraHelper(activity: Activity, surfaceView: SurfaceView) : Camera.Previe
 
     private fun toast(msg: String) {
         Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun log(msg: String) {
-        Log.e("tag", msg)
     }
 
     fun getCamera(): Camera? = mCamera

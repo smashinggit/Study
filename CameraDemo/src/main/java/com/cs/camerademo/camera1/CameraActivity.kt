@@ -4,11 +4,12 @@ import android.graphics.BitmapFactory
 import android.graphics.RectF
 import android.hardware.Camera
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
-import com.cs.camerademo.BaseActivity
 import com.cs.camerademo.R
+import com.cs.camerademo.log
+import com.cs.camerademo.toast
 import com.cs.camerademo.util.BitmapUtils
 import com.cs.camerademo.util.FileUtil
 import kotlinx.android.synthetic.main.activity_camera.*
@@ -20,11 +21,11 @@ import kotlin.concurrent.thread
  * data  :  2018/3/18
  * desc :
  */
-class CameraActivity : BaseActivity() {
+class CameraActivity : AppCompatActivity() {
     companion object {
-        val TYPE_TAG = "type"
-        val TYPE_CAPTURE = 0
-        val TYPE_RECORD = 1
+        const val TYPE_TAG = "type"
+        const val TYPE_CAPTURE = 0
+        const val TYPE_RECORD = 1
     }
 
     var lock = false //控制MediaRecorderHelper的初始化

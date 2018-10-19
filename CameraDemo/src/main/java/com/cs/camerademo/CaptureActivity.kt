@@ -25,14 +25,14 @@ import java.io.File
  */
 class CaptureActivity : AppCompatActivity() {
     companion object {
-        val AUTHORITY = "com.cs.camerademo.fileProvider"
+        const val AUTHORITY = "com.cs.camerademo.fileProvider"
 
-        val REQUEST_CODE_CAPTURE_SMALL = 1
-        val REQUEST_CODE_CAPTURE_RAW = 2
-        val REQUEST_CODE_CAPTURE = 3
-        val REQUEST_CODE_CAPTURE_CROP = 4
-        val REQUEST_CODE_ALBUM = 5
-        val REQUEST_CODE_VIDEO = 6
+        const val REQUEST_CODE_CAPTURE_SMALL = 1
+        const val REQUEST_CODE_CAPTURE_RAW = 2
+        const val REQUEST_CODE_CAPTURE = 3
+        const val REQUEST_CODE_CAPTURE_CROP = 4
+        const val REQUEST_CODE_ALBUM = 5
+        const val REQUEST_CODE_VIDEO = 6
 
         var imgUri: Uri? = null
         var imageFile: File? = null

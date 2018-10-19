@@ -1,1 +1,1 @@
-include ':MyDefineView', ':test', ':Rxjava2Demo', ':notificationdemo', ':StatusBarDemo', ':camerademo', ':ViewDemo', ':recyclerviewdemo', ':NetDemo', ':agerademo'
+include ':MyDefineView', ':test', ':Rxjava2Demo', ':notificationdemo', ':StatusBarDemo', ':CameraDemo', ':ViewDemo', ':recyclerviewdemo', ':NetDemo', ':agerademo'
