@@ -1,0 +1,28 @@
+// 文本名：javascript
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Carson_Ho</title>
+
+    <script>
+
+   function callJS(){
+      alert("Android调用了JS的callJS方法");
+   }
+
+  function callAndroid(){
+            test.hello("js调用了android中的hello方法");
+         }
+
+  function callAndroid2(){
+           document.location = "js://webview?arg1=111&arg2=222";
+         }
+
+    </script>
+
+</head>
+<body>
+<button type="button" id="button1" onclick="callAndroid()"></button>
+</body>
+</html>
