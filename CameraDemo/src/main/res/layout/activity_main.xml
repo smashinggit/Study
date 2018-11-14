@@ -29,6 +29,13 @@
             android:text="Camera 拍照" />
 
         <Button
+            android:id="@+id/btCameraRecord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Camera 录视频" />
+
+        <Button
             android:id="@+id/btCamera2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,11 +43,18 @@
             android:text="Camera2 拍照" />
 
         <Button
-            android:id="@+id/btCameraRecord"
+            android:id="@+id/btCamera2Face"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Camera 录视频" />
+            android:text="Camera2 人脸检测" />
+
+        <Button
+            android:id="@+id/btTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="test" />
     </GridLayout>
 
 

@@ -4,8 +4,12 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
+import com.cs.camerademo.log
+import com.cs.camerademo.toast
+import okio.Okio
 import java.io.ByteArrayOutputStream
 import java.io.OutputStream
+import kotlin.concurrent.thread
 
 /**
  *
@@ -80,6 +84,28 @@ object BitmapUtils {
             }
         }
         return inSampleSize
+    }
+
+    fun savePic(data: ByteArray?, isMirror: Boolean = false, onSuccess: (savedPath: String, time: String) -> Unit, onFailed: (msg: String) -> Unit) {
+        thread {
+            try {
+                val temp = System.currentTimeMillis()
+                val picFile = FileUtil.createCameraFile("camera2")
+                if (picFile != null && data != null) {
+
+                    val rawBitmap = BitmapFactory.decodeByteArray(data, 0, data.size)
+                    val resultBitmap = if (isMirror) mirror(rawBitmap) else rawBitmap
+                    Okio.buffer(Okio.sink(picFile)).write(toByteArray(resultBitmap)).close()
+
+                    onSuccess("${picFile.absolutePath}", "${System.currentTimeMillis() - temp}")
+
+                    log("图片已保存! 耗时：${System.currentTimeMillis() - temp}    路径：  ${picFile.absolutePath}")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                onFailed("${e.message}")
+            }
+        }
     }
 
 }

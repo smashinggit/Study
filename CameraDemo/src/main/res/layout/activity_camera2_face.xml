@@ -6,15 +6,10 @@
     android:background="#000">
 
 
-    <TextureView
+    <com.cs.camerademo.view.AutoFitTextureView
         android:id="@+id/textureView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <!--<com.cs.camerademo.view.AutoFitTextureView-->
-        <!--android:id="@+id/textureView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content" />-->
+        android:layout_height="wrap_content" />
 
     <com.cs.camerademo.view.FaceView
         android:id="@+id/faceView"

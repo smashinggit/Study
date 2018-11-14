@@ -30,9 +30,9 @@ object FileUtil {
         }
     }
 
-    fun createCameraFile(): File? {
+    fun createCameraFile(folderName: String = "camera1"): File? {
         return try {
-            var rootFile = File(rootFolderPath + File.separator + "camera1")
+            val rootFile = File(rootFolderPath + File.separator + "$folderName")
             if (!rootFile.exists())
                 rootFile.mkdirs()
 
