@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,16 +8,82 @@
     tools:context="com.cmos.agerademo.CalActivity">
 
 
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvNum1,tvOperator,tvNum2" />
+
+    <TextView
+        android:id="@+id/tvNum1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:text="0"
+        android:textSize="30dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tvOperator"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvOperator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="+"
+        android:textSize="30dp"
+        app:layout_constraintLeft_toRightOf="@id/tvNum1"
+        app:layout_constraintRight_toLeftOf="@id/tvNum2"
+        app:layout_constraintTop_toTopOf="@id/tvNum1" />
+
+    <TextView
+        android:id="@+id/tvNum2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="0"
+        android:textSize="30dp"
+        app:layout_constraintLeft_toRightOf="@+id/tvOperator"
+        app:layout_constraintRight_toLeftOf="@+id/tvFlag"
+        app:layout_constraintTop_toTopOf="@id/tvNum1" />
+
+    <TextView
+        android:id="@+id/tvFlag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="="
+        android:textSize="30dp"
+        app:layout_constraintLeft_toRightOf="@+id/tvNum2"
+        app:layout_constraintRight_toLeftOf="@+id/tvResult"
+        app:layout_constraintTop_toTopOf="@id/tvNum1" />
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="0"
+        android:textSize="30dp"
+        app:layout_constraintLeft_toRightOf="@+id/tvFlag"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvNum1" />
+
     <RadioGroup
         android:id="@+id/rgOperator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/barrier">
 
         <RadioButton
             android:id="@+id/rbAdd"
+            android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ADD" />
@@ -47,42 +113,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:max="100" />
+        android:max="100"
+        app:layout_constraintTop_toBottomOf="@+id/rgOperator" />
 
     <TextView
-        android:id="@+id/tv1"
+        android:id="@+id/tvNumTip1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="0" />
+        android:text="0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sb1" />
 
     <SeekBar
         android:id="@+id/sb2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:max="100" />
+        android:layout_marginTop="30dp"
+        android:max="100"
+        app:layout_constraintTop_toBottomOf="@+id/sb1" />
 
     <TextView
-        android:id="@+id/tv2"
+        android:id="@+id/tvNumTip2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="0" />
-
-    <TextView
-        android:id="@+id/tvResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
         android:text="0"
-        android:textSize="20dp" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sb2" />
 
-    <Button
-        android:id="@+id/btnTest"
-        android:text="test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

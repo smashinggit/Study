@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Button;
 
+import com.cmos.agerademo.http.Http;
 import com.google.android.agera.Function;
 import com.google.android.agera.Merger;
 import com.google.android.agera.Predicate;
@@ -28,7 +29,9 @@ import com.google.android.agera.Updatable;
 public class MainActivity extends Activity {
 
     Button btnSimple;
+    Button btnCalculate;
     Button btnLoadImage;
+    Button btnHttp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,11 +39,15 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         btnSimple = findViewById(R.id.btnSimple);
+        btnCalculate = findViewById(R.id.btnCalculate);
         btnLoadImage = findViewById(R.id.btnLoadImage);
+        btnHttp = findViewById(R.id.btnHttp);
 
 
         btnSimple.setOnClickListener(v -> startActivity(new Intent(this, SimpleActivity.class)));
+        btnCalculate.setOnClickListener(v -> startActivity(new Intent(this, CalculateActivity.class)));
         btnLoadImage.setOnClickListener(v -> startActivity(new Intent(this, LoadImageActivity.class)));
+        btnHttp.setOnClickListener(v -> startActivity(new Intent(this, HttpActivity.class)));
 
     }
 
