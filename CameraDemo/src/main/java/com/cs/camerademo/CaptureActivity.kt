@@ -166,7 +166,7 @@ class CaptureActivity : AppCompatActivity() {
                 }
 
                 REQUEST_CODE_CAPTURE -> { //拍照成功后，裁剪
-                    val sourceUri = FileProvider.getUriForFile(this, AUTHORITY, imageFile) //通过FileProvider创建一个content类型的Uri
+                    val sourceUri = FileProvider.getUriForFile(this, AUTHORITY, imageFile!!) //通过FileProvider创建一个content类型的Uri
                     gotoCrop(sourceUri)
                 }
 
