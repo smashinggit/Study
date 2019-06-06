@@ -2,7 +2,6 @@ package com.cs.common.base;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import okhttp3.OkHttpClient;
@@ -16,7 +15,7 @@ import okhttp3.OkHttpClient;
 public class BaseActivity extends Activity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         OkHttpClient client = new OkHttpClient();
     }
