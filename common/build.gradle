@@ -35,4 +35,7 @@ dependencies {
     api 'com.squareup.retrofit2:retrofit:2.5.0'
     api 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
     api 'me.drakeet.retrofit2:adapter-agera:2.2.0-beta'
+
+    api 'pub.devrel:easypermissions:2.0.1'
+
 }

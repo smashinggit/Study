@@ -101,6 +101,6 @@ object MyActivityManager : Application.ActivityLifecycleCallbacks {
     }
 
     fun log(msg: String) {
-        Log.e("tag", "$msg")
+//        Log.e("tag", "$msg")
     }
 }

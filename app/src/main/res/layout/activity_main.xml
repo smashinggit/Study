@@ -22,6 +22,24 @@
             android:layout_height="wrap_content"
             android:text="windowmanager" />
 
+        <Button
+            android:id="@+id/btnPermission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="permission" />
+
+        <Button
+            android:id="@+id/btnEasyPermission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EasyPermission" />
+
+        <Button
+            android:id="@+id/btnTelephony"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Telephony" />
+
     </LinearLayout>
 </ScrollView>
 
