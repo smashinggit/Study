@@ -32,3 +32,7 @@
 # WindowManager
 1. 添加悬浮窗 
 2. 监听悬浮窗外的点击事件(实现广告)
+
+# Permission
+1. 动态权限申请
+2. EasyPermission 的使用
