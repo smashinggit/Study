@@ -26,7 +26,7 @@ class StickyRecyclerViewFragment : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
     }
@@ -50,7 +50,7 @@ class StickyRecyclerViewFragment : Fragment() {
 
 
 
-        stickyRecyclerView.setAdapter(MyAdapter(context, cityList))
+        stickyRecyclerView.setAdapter(MyAdapter(context!!, cityList))
     }
 
 
@@ -64,7 +64,7 @@ class StickyRecyclerViewFragment : Fragment() {
             holder.tvProvience.text = data[position].provienceName
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyAdapter.MyHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdapter.MyHolder {
             val view = LayoutInflater.from(mContext).inflate(R.layout.item_sticky_recyclerview, parent, false)
             return MyHolder(view)
         }

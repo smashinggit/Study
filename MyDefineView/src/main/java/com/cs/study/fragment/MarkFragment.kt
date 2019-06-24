@@ -22,8 +22,8 @@ import kotlinx.android.synthetic.main.fragment_mark.*
 class MarkFragment : Fragment() {
 
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_mark, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_mark, container, false)
         return view
     }
 
@@ -35,7 +35,7 @@ class MarkFragment : Fragment() {
     private fun init() {
 
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
-        recyclerView.adapter = MarkAdapter(context)
+        recyclerView.adapter = MarkAdapter(context!!)
 
     }
 
@@ -134,7 +134,7 @@ class MarkFragment : Fragment() {
             }
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MarkHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarkHolder {
 
             return MarkHolder(LayoutInflater.from(context).inflate(R.layout.item_mark_recyclerview, parent, false))
         }

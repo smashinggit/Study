@@ -76,7 +76,7 @@ class StickyRecyclerView : RecyclerView {
         }
 
         //计算 item间间隙(是普通分割线 ,还是title)
-        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: State?) {
+        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: State) {
             super.getItemOffsets(outRect, view, parent, state)
             val pos = parent.getChildAdapterPosition(view)
 
@@ -86,7 +86,7 @@ class StickyRecyclerView : RecyclerView {
                 outRect.top = mLineHeight.toInt()
         }
 
-        override fun onDraw(c: Canvas, parent: RecyclerView, state: State?) {
+        override fun onDraw(c: Canvas, parent: RecyclerView, state: State) {
             super.onDraw(c, parent, state)
             val left = parent.left
             val right = parent.measuredWidth - parent.paddingRight
@@ -121,7 +121,7 @@ class StickyRecyclerView : RecyclerView {
         }
 
         //上层绘制,绘制顶部悬停title
-        override fun onDrawOver(c: Canvas, parent: RecyclerView, state: State?) {
+        override fun onDrawOver(c: Canvas, parent: RecyclerView, state: State) {
             super.onDrawOver(c, parent, state)
             val left = parent.left
             val right = parent.measuredWidth - parent.paddingRight

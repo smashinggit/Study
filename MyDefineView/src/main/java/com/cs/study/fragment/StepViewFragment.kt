@@ -22,7 +22,7 @@ class StepViewFragment : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
     }
@@ -47,8 +47,8 @@ class StepViewFragment : Fragment() {
         Collections.reverse(timeList)
 
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = StepViewAdapter(context, dataList, timeList)
-        recyclerView.addItemDecoration(StepViewItemDecoration(context))
+        recyclerView.adapter = StepViewAdapter(context!!, dataList, timeList)
+        recyclerView.addItemDecoration(StepViewItemDecoration(context!!))
     }
 
 
@@ -71,7 +71,7 @@ class StepViewFragment : Fragment() {
 
         override fun getItemCount(): Int = data.size
 
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): StepViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StepViewHolder {
             val itemView = LayoutInflater.from(mContext).inflate(R.layout.item_recyclerview, parent, false)
             return StepViewHolder(itemView)
         }

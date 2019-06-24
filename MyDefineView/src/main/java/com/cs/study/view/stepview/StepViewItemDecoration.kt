@@ -34,12 +34,12 @@ class StepViewItemDecoration(mContext: Context) : RecyclerView.ItemDecoration() 
     }
 
     //同样是绘制内容，但与onDraw（）的区别是：绘制在图层的最上层
-    override fun onDrawOver(c: Canvas?, parent: RecyclerView?, state: RecyclerView.State?) {
+    override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
     }
 
     //在子视图上设置绘制范围，并绘制内容
     //绘制图层在ItemView以下，所以如果绘制区域与ItemView区域相重叠，会被遮挡
-    override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun onDraw(canvas: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(canvas, parent, state)
 
         val childCount = parent.childCount
@@ -83,7 +83,7 @@ class StepViewItemDecoration(mContext: Context) : RecyclerView.ItemDecoration() 
     }
 
     //设置ItemView的内嵌偏移长度（inset）
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State?) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
 
         outRect.set(itemLeft.toInt(), itemTop.toInt(), 0, 0)

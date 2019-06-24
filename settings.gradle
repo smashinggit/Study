@@ -1,1 +1,1 @@
-include ':MyDefineView', ':app', ':StatusBarDemo', ':CameraDemo', ':AgeraDemo', ':webviewdemo', ':NdkDemo', ':BlackList', ':BitmapDemo', ':common', ':architecture'
+include ':MyDefineView', ':app', ':StatusBarDemo', ':CameraDemo', ':AgeraDemo', ':webviewdemo', ':NdkDemo', ':BlackList', ':BitmapDemo', ':common', ':Architecture'
