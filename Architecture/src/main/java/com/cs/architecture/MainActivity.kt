@@ -2,9 +2,11 @@ package com.cs.architecture
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.cs.architecture.jetpack.databinding.BindingActivity
 import com.cs.architecture.jetpack.lifecycle.MyLifeCycleObserver
+import com.cs.architecture.jetpack.lifecycle.MyLifeCycleObserver8
+import com.cs.architecture.jetpack.livedata.LiveDataActivity
 import com.cs.architecture.mvp.MvpActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -16,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         btnMvp.setOnClickListener { startActivity(Intent(this, MvpActivity::class.java)) }
         btnDatabinding.setOnClickListener { startActivity(Intent(this, BindingActivity::class.java)) }
-//        btnMvvm.setOnClickListener { startActivity(Intent(this, MvvmActivity::class.java)) }
+        btnLiveData.setOnClickListener { startActivity(Intent(this, LiveDataActivity::class.java)) }
 
 
         //监听所有Activity的声明周期回调
@@ -26,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         //监听将此Activity的声明周期
         val observer = MyLifeCycleObserver(this, lifecycle) { }
         lifecycle.addObserver(observer)
+
+        lifecycle.addObserver(MyLifeCycleObserver8())
     }
 
 

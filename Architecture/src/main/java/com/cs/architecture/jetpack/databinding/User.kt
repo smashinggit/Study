@@ -1,6 +1,6 @@
 package com.cs.architecture.jetpack.databinding
 
-import android.databinding.ObservableField
+import androidx.databinding.ObservableField
 
 /**
  *

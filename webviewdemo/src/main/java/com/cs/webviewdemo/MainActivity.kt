@@ -4,10 +4,10 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.net.http.SslError
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.annotation.RequiresApi
-import android.support.v7.app.AlertDialog
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import android.util.Log
 import android.webkit.*
 import android.widget.Toast

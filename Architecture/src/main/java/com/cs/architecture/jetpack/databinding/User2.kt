@@ -1,7 +1,7 @@
 package com.cs.architecture.jetpack.databinding
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
 
 /**
  *

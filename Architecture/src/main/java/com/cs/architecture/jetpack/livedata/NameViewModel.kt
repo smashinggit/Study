@@ -1,7 +1,7 @@
 package com.cs.architecture.jetpack.livedata
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
 /**
  *
@@ -18,7 +18,10 @@ import android.arch.lifecycle.ViewModel
 class NameViewModel : ViewModel() {
 
     // Create a LiveData with a String
-    val currentName = MutableLiveData<String>()
+    val name = MutableLiveData<String>()
+            .apply {
+                value = "chensen"
+            }
 
 
     // Rest of the ViewModel...

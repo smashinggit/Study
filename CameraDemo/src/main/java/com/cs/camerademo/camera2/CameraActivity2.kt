@@ -1,7 +1,7 @@
 package com.cs.camerademo.camera2
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.WindowManager
 import com.cs.camerademo.R
 import kotlinx.android.synthetic.main.activity_camera2.*

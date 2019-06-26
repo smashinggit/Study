@@ -2,7 +2,7 @@ package com.cs.camerademo
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.cs.camerademo.camera1.CameraActivity
 import com.cs.camerademo.camera2.CameraActivity2
 import com.cs.camerademo.camera2.CameraActivity2Face

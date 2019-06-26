@@ -6,7 +6,6 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
 
-
     defaultConfig {
         applicationId "com.cmos.agerademo"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -31,8 +30,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$rootProject.supportVersion"
-    implementation "com.android.support.constraint:constraint-layout:${rootProject.constraintVersion}"
+    implementation "androidx.appcompat:appcompat:${rootProject.ext.appcompatVersion}"
+    implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintlayoutVersion}"
     implementation 'com.google.android.agera:agera:1.4.0'
     implementation 'me.drakeet.retrofit2:adapter-agera:2.2.0-beta'
     implementation 'com.squareup.okhttp3:okhttp:3.14.2'

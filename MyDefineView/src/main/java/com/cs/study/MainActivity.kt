@@ -1,9 +1,9 @@
 package com.cs.study
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.appcompat.app.AppCompatActivity
 import com.cs.study.fragment.MarkFragment
 import com.cs.study.fragment.RadarFragment
 import com.cs.study.fragment.StepViewFragment
@@ -25,9 +25,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        viewpager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
+        viewpager.adapter = object : androidx.fragment.app.FragmentPagerAdapter(supportFragmentManager) {
 
-            override fun getItem(position: Int): Fragment {
+            override fun getItem(position: Int): androidx.fragment.app.Fragment {
                 return fragments[position]
             }
 

@@ -2,9 +2,9 @@ package com.cs.blacklist
 
 import android.app.Service
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.support.annotation.RequiresApi
+import androidx.annotation.RequiresApi
 import android.telephony.PhoneStateListener
 import android.telephony.TelephonyManager
 import android.util.Log

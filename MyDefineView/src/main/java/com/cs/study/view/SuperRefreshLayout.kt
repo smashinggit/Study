@@ -2,9 +2,9 @@ package com.cs.study.view
 
 import android.content.Context
 import android.graphics.Color
-import android.support.annotation.NonNull
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.NonNull
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.ViewConfiguration
 
@@ -14,7 +14,7 @@ import android.view.ViewConfiguration
  * data : 2018/4/20
  * desc:
  */
-class SuperRefreshLayout : SwipeRefreshLayout {
+class SuperRefreshLayout : androidx.swiperefreshlayout.widget.SwipeRefreshLayout {
 
     var isRefresh = false
     var mTouchSlop = 0

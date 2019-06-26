@@ -2,13 +2,12 @@ package com.cmos.agerademo;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.agera.MutableRepository;
-import com.google.android.agera.Observable;
 import com.google.android.agera.Repositories;
 import com.google.android.agera.Updatable;
 

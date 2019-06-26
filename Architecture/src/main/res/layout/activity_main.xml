@@ -21,6 +21,12 @@
         android:layout_height="wrap_content"
         android:text="Databinding" />
 
+    <Button
+        android:id="@+id/btnLiveData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LiveData 和 ViewModel" />
+
 
     <TextView
         android:layout_width="wrap_content"

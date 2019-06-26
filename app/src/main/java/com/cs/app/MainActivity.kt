@@ -3,7 +3,7 @@ package com.cs.app
 import android.content.Intent
 import android.os.Bundle
 import android.os.HandlerThread
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import com.cs.app.life.MyActivityManager
 import com.cs.app.permission.EasyPermissionActivity

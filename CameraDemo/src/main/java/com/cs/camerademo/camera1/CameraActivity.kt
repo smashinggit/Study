@@ -4,7 +4,7 @@ import android.graphics.BitmapFactory
 import android.graphics.RectF
 import android.hardware.Camera
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
 import com.cs.camerademo.R

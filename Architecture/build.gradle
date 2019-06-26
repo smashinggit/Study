@@ -26,6 +26,10 @@ android {
         targetCompatibility = '1.8'
     }
 
+    kotlinOptions{
+        jvmTarget = '1.8'
+    }
+
     dataBinding {
         enabled = true
     }
@@ -35,12 +39,14 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$rootProject.supportVersion"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
+    implementation "androidx.appcompat:appcompat:${rootProject.ext.appcompatVersion}"
+    implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintlayoutVersion}"
 
     implementation project(":common")
 
     def lifecycle_version = "2.0.0"
-    // ViewModel and LiveData
+//     ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+
 }

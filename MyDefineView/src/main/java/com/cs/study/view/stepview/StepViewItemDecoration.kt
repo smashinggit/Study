@@ -2,7 +2,7 @@ package com.cs.study.view.stepview
 
 import android.content.Context
 import android.graphics.*
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.TypedValue
 import android.view.View
 

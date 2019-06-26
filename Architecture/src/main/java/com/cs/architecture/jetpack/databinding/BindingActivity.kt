@@ -1,6 +1,6 @@
 package com.cs.architecture.jetpack.databinding
 
-import android.databinding.*
+import androidx.databinding.*
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
