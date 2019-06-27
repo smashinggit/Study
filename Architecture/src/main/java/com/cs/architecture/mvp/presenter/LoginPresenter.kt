@@ -1,7 +1,8 @@
 package com.cs.architecture.mvp.presenter
 
 import com.cs.architecture.model.User
-import com.cs.architecture.mvp.view.ILoginView
+import com.cs.architecture.mvp.base.BasePresenter
+import com.cs.architecture.mvp.contract.LoginContract
 
 /**
  *
@@ -9,7 +10,7 @@ import com.cs.architecture.mvp.view.ILoginView
  * data : 2019/6/12
  * desc:
  */
-class LoginPresenter : BasePresenter<ILoginView>(), ILoginPresenter {
+class LoginPresenter : BasePresenter<LoginContract.Presenter, LoginContract.View>(), LoginContract.Presenter {
 
 
     override fun login(user: User) {

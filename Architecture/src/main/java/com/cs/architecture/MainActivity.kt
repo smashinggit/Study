@@ -8,6 +8,7 @@ import com.cs.architecture.jetpack.lifecycle.MyLifeCycleObserver
 import com.cs.architecture.jetpack.lifecycle.MyLifeCycleObserver8
 import com.cs.architecture.jetpack.livedata.LiveDataActivity
 import com.cs.architecture.mvp.MvpActivity
+import com.cs.architecture.mvp.MvpActivity2
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnMvp.setOnClickListener { startActivity(Intent(this, MvpActivity::class.java)) }
+        btnMvp.setOnClickListener { startActivity(Intent(this, MvpActivity2::class.java)) }
         btnDatabinding.setOnClickListener { startActivity(Intent(this, BindingActivity::class.java)) }
         btnLiveData.setOnClickListener { startActivity(Intent(this, LiveDataActivity::class.java)) }
 
