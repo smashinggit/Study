@@ -2,6 +2,7 @@ package com.cs.architecture.jetpack.databinding
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import com.cs.architecture.BR
 
 /**
  *
@@ -19,12 +20,14 @@ class User2 : BaseObservable() {
     var name: String = ""
         set(value) {
             field = value
+            notifyPropertyChanged(BR.name)
         }
 
     @get:Bindable
     var age: String = ""
         set(value) {
             field = value
+            notifyPropertyChanged(BR.age)
         }
 
 }

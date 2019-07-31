@@ -15,11 +15,11 @@ class LoginPresenter : BasePresenter<LoginContract.Presenter, LoginContract.View
 
     override fun login(user: User) {
 
-        if (user.name.isEmpty() || user.age.isEmpty()) {
+        if (user.name.isEmpty() || user.pwd.isEmpty()) {
             mView?.showToast("用户名/密码不能为空")
         } else {
 
-            if (user.name == "qq" && user.age == "123") {
+            if (user.name == "qq" && user.pwd == "123") {
                 mView?.loginSuccess("登录成功")
             } else {
                 mView?.loginFailed("登录失败")

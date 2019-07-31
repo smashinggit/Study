@@ -20,9 +20,10 @@
         </activity>
         <activity android:name=".mvp.MvpActivity" />
         <activity android:name=".mvp.MvpActivity2" />
-        <!--<activity android:name=".mvvm.MvvmActivity"/>-->
+        <activity android:name=".mvvm.MvvmActivity"/>
         <activity android:name=".jetpack.livedata.LiveDataActivity" />
         <activity android:name=".jetpack.databinding.BindingActivity" />
+        <activity android:name=".jetpack.coroutines.CoroutinesActivity" />
     </application>
 
 </manifest>

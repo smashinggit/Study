@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.os.HandlerThread
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
+import com.cs.app.data.database.DataBaseActivity
+import com.cs.app.data.file.FileActivity
 import com.cs.app.life.MyActivityManager
 import com.cs.app.permission.EasyPermissionActivity
 import com.cs.app.permission.PermissionActivity
@@ -28,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         btnPermission.setOnClickListener { startActivity(Intent(this, PermissionActivity::class.java)) }
         btnEasyPermission.setOnClickListener { startActivity(Intent(this, EasyPermissionActivity::class.java)) }
         btnTelephony.setOnClickListener { startActivity(Intent(this, TelephonyActivity::class.java)) }
+        btnFile.setOnClickListener { startActivity(Intent(this, FileActivity::class.java)) }
+        btnDataBase.setOnClickListener { startActivity(Intent(this, DataBaseActivity::class.java)) }
     }
 
 }

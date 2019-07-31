@@ -65,7 +65,7 @@ class TelephonyActivity : BaseActivity() {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission_group.PHONE), 100)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>?, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
 
         when (requestCode) {
             100 -> {

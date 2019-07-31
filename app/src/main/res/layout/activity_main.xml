@@ -40,6 +40,18 @@
             android:layout_height="wrap_content"
             android:text="Telephony" />
 
+        <Button
+            android:id="@+id/btnFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="File" />
+
+        <Button
+            android:id="@+id/btnDataBase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="database" />
+
     </LinearLayout>
 </ScrollView>
 

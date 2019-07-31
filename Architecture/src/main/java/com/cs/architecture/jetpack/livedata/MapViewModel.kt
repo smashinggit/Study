@@ -1,6 +1,5 @@
 package com.cs.architecture.jetpack.livedata
 
-import androidx.arch.core.util.Function
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel

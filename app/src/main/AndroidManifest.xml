@@ -36,6 +36,8 @@
         <activity android:name=".permission.PermissionActivity" />
         <activity android:name=".permission.EasyPermissionActivity" />
         <activity android:name=".telephony.TelephonyActivity" />
+        <activity android:name=".data.file.FileActivity" />
+        <activity android:name=".data.database.DataBaseActivity" />
     </application>
 
 </manifest>

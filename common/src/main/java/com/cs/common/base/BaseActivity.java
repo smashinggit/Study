@@ -18,7 +18,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        OkHttpClient client = new OkHttpClient();
     }
 
     protected void log(String msg) {

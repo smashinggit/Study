@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -37,5 +39,12 @@ dependencies {
     api 'me.drakeet.retrofit2:adapter-agera:2.2.0-beta'
 
     api 'pub.devrel:easypermissions:2.0.1'
+
+    api "androidx.core:core-ktx:1.0.2"
+    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    api "androidx.appcompat:appcompat:${rootProject.ext.appcompatVersion}"
+    api "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintlayoutVersion}"
+    api 'androidx.recyclerview:recyclerview:1.0.0'
 
 }

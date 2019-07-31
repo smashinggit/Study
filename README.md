@@ -1,5 +1,6 @@
 
-记录学习过程中的Demo及博客
+# 记录学习过程中的Demo及博客
+
 
 # Agera
 [Android官方响应式框架Agera详解：一、相关概念和基本使用](https://www.jianshu.com/p/32461a21238e)
@@ -23,6 +24,15 @@
 
 # 相机拍照裁剪
 [Android:调用系统相机实现拍照+裁切（兼容7.0以上系统）](https://www.jianshu.com/p/eca7335602c1)
+
+# 官方架构组件
+## ViewModel
+## LiveData
+## DataBinding
+## Room
+## Kotlin Coroutines
+
+
 
 # Bitmap
 1. bitmap 的压缩

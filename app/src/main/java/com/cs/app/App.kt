@@ -3,6 +3,7 @@ package com.cs.app
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.cs.app.life.MyActivityManager
 
 /**
@@ -27,4 +28,8 @@ class App : Application() {
 
 fun Context.log(msg: String) {
     Log.d("tag", msg)
+}
+
+fun Context.taost(msg: String) {
+    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 }
