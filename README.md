@@ -25,8 +25,6 @@
 # 相机拍照裁剪
 [Android:调用系统相机实现拍照+裁切（兼容7.0以上系统）](https://www.jianshu.com/p/eca7335602c1)
 
-!(如何选择后台任务)[https://developer.android.google.cn/images/guide/background/bg-job-choose.svg]
-
 
 # 官方架构组件
 ## ViewModel
