@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "com.cs.camerademo"
         minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        targetSdkVersion  22 //由于代码中没有做动态权限申请，故设置为22。
         versionCode 1
         versionName "1.0"
 
