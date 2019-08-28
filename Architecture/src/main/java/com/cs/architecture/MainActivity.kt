@@ -8,6 +8,7 @@ import com.cs.architecture.jetpack.databinding.BindingActivity
 import com.cs.architecture.jetpack.lifecycle.MyLifeCycleObserver
 import com.cs.architecture.jetpack.lifecycle.MyLifeCycleObserver8
 import com.cs.architecture.jetpack.livedata.LiveDataActivity
+import com.cs.architecture.jetpack.navigation.NavigationActivity
 import com.cs.architecture.mvp.MvpActivity
 import com.cs.architecture.mvp.MvpActivity2
 import com.cs.architecture.mvvm.MvvmActivity
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         btnDatabinding.setOnClickListener { startActivity(Intent(this, BindingActivity::class.java)) }
         btnLiveData.setOnClickListener { startActivity(Intent(this, LiveDataActivity::class.java)) }
         btnCoroutines.setOnClickListener { startActivity(Intent(this, CoroutinesActivity::class.java)) }
+        btnNavigation.setOnClickListener { startActivity(Intent(this, NavigationActivity::class.java)) }
 
 
         //监听所有Activity的声明周期回调

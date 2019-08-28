@@ -4,6 +4,7 @@
     package="com.cs.architecture">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,10 +21,11 @@
         </activity>
         <activity android:name=".mvp.MvpActivity" />
         <activity android:name=".mvp.MvpActivity2" />
-        <activity android:name=".mvvm.MvvmActivity"/>
+        <activity android:name=".mvvm.MvvmActivity" />
         <activity android:name=".jetpack.livedata.LiveDataActivity" />
         <activity android:name=".jetpack.databinding.BindingActivity" />
         <activity android:name=".jetpack.coroutines.CoroutinesActivity" />
+        <activity android:name=".jetpack.navigation.NavigationActivity" />
     </application>
 
 </manifest>

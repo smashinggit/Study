@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase
  * data : 2019/7/24
  * desc:
  */
-@Database(version = 1, entities = [Product::class])
+@Database(version = 1, entities = [Product::class],exportSchema = false)
 abstract class ProductDataBase : RoomDatabase() {
 
     abstract fun getProductDao(): ProductsDao

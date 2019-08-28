@@ -14,6 +14,6 @@ public class LogUtils {
     }
 
     public static void log(String msg) {
-        Log.d("tag", msg);
+        Log.e("tag", msg);
     }
 }

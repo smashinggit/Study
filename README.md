@@ -32,6 +32,13 @@
 ## Room
 ## Kotlin Coroutines
 
+# 后台任务
+![如何选择后台任务](https://developer.android.google.cn/images/guide/background/bg-job-choose.svg)
+## WorkManager
+## Foreground services
+## AlarmManager
+## DownloadManager
+
 
 
 # Bitmap
