@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/btnCoordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跟随" />
+
+    <Button
+        android:id="@+id/btnCoordinatorLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="toobar滑动隐藏" />
+
+    <Button
+        android:id="@+id/btnCoordinatorLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="图片滑动+导航栏悬浮" />
+
+    <Button
+        android:id="@+id/btnCoordinatorLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="图片滑动+toolbar变化+导航栏悬浮" />
+
+    <Button
+    android:id="@+id/btnToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:text="toolbar的使用" />
+
+    <Button
+        android:id="@+id/btnZhihu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="仿知乎toolbar" />
+
+</LinearLayout>

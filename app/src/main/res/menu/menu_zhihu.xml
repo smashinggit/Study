@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@mipmap/ic_launcher"
+        android:title="搜索"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_notify"
+        android:icon="@mipmap/ic_launcher"
+        android:title="通知"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_setting"
+        android:icon="@mipmap/ic_launcher"
+        android:title="设置"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_about"
+        android:icon="@mipmap/ic_launcher"
+        android:title="关于"
+        app:showAsAction="never" />
+</menu>

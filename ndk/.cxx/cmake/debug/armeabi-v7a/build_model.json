@@ -1,0 +1,72 @@
+{
+  "variant": {
+    "module": {
+      "rootBuildGradleFolder": "D:\\Project\\MyStudioProject\\Study\\Study",
+      "sdkFolder": "D:\\MySoftWare\\Android\\sdk",
+      "isNativeCompilerSettingsCacheEnabled": false,
+      "isBuildOnlyTargetAbiEnabled": true,
+      "splitsAbiFilterSet": [],
+      "intermediatesFolder": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\build\\intermediates",
+      "gradleModulePathName": ":ndk",
+      "moduleRootFolder": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk",
+      "makeFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\CMakeLists.txt",
+      "buildSystem": "CMAKE",
+      "compilerSettingsCacheFolder": "D:\\Project\\MyStudioProject\\Study\\Study\\.cxx",
+      "cxxFolder": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx",
+      "ndkFolder": "D:\\MySoftWare\\Android\\sdk\\ndk-bundle",
+      "ndkVersion": "18.1.5063045",
+      "ndkSupportedAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "ndkDefaultAbiList": [
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64"
+      ],
+      "cmakeToolchainFile": "."
+    },
+    "buildSystemArgumentList": [],
+    "cFlagList": [],
+    "cppFlagsList": [
+      ""
+    ],
+    "variantName": "debug",
+    "soFolder": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\build\\intermediates\\cmake\\debug\\lib",
+    "objFolder": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\build\\intermediates\\cmake\\debug\\obj",
+    "jsonFolder": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\debug",
+    "gradleBuildOutputFolder": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cxx\\debug",
+    "isDebuggableEnabled": true,
+    "validAbiList": [
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
+    ],
+    "buildTargetSet": []
+  },
+  "abi": "ARMEABI_V7A",
+  "abiPlatformVersion": 16,
+  "cxxBuildFolder": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\debug\\armeabi-v7a",
+  "jsonFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\debug\\armeabi-v7a\\android_gradle_build.json",
+  "gradleBuildOutputFolder": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cxx\\debug\\armeabi-v7a",
+  "objFolder": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a",
+  "buildCommandFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\debug\\armeabi-v7a\\build_command.txt",
+  "buildOutputFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\debug\\armeabi-v7a\\build_output.txt",
+  "modelOutputFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\debug\\armeabi-v7a\\build_model.json",
+  "cmake": {
+    "cmakeListsWrapperFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cxx\\debug\\armeabi-v7a\\CMakeLists.txt",
+    "toolchainWrapperFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cxx\\debug\\armeabi-v7a\\android_gradle_build.toolchain.cmake",
+    "buildGenerationStateFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cxx\\debug\\armeabi-v7a\\build_generation_state.json",
+    "cacheKeyFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cxx\\debug\\armeabi-v7a\\compiler_cache_key.json",
+    "compilerCacheUseFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cxx\\debug\\armeabi-v7a\\compiler_cache_use.json",
+    "compilerCacheWriteFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cxx\\debug\\armeabi-v7a\\compiler_cache_write.json",
+    "toolchainSettingsFromCacheFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cxx\\debug\\armeabi-v7a\\compiler_settings_cache.cmake",
+    "cmakeWrappingBaseFolder": "."
+  },
+  "jsonGenerationLoggingRecordFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\debug\\armeabi-v7a\\json_generation_record.json",
+  "compileCommandsJsonFile": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\debug\\armeabi-v7a\\compile_commands.json"
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnPic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="加载多图片" />
+
+    <Button
+        android:id="@+id/btnTouchDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="滑动删除" />
+
+    <Button
+        android:id="@+id/btnDrag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="拖拽移动" />
+
+    <Button
+        android:id="@+id/btnCamera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="加载本地图片" />
+
+
+</LinearLayout>

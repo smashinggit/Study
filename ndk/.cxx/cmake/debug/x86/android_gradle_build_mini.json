@@ -1,0 +1,16 @@
+{
+  "buildFiles": [
+    "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "D:\\MySoftWare\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\debug\\x86 --target clean"
+  ],
+  "libraries": {
+    "config-Debug-x86": {
+      "artifactName": "config",
+      "buildCommand": "D:\\MySoftWare\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\debug\\x86 --target config",
+      "abi": "x86",
+      "output": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\build\\intermediates\\cmake\\debug\\obj\\x86\\libconfig.so"
+    }
+  }
+}

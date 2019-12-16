@@ -1,0 +1,38 @@
+
+{
+	"buildFiles" : [ "D:/Project/MyStudioProject/Study/Study/ndk/CMakeLists.txt" ],
+	"cleanCommands" : 
+	[
+		"D:\\MySoftWare\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\debug\\armeabi-v7a --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"config-Debug-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "config",
+			"buildCommand" : "D:\\MySoftWare\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\debug\\armeabi-v7a --target config",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi16 --gcc-toolchain=D:/MySoftWare/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=D:/MySoftWare/Android/sdk/ndk-bundle/sysroot  -Dconfig_EXPORTS -isystem D:\\MySoftWare\\Android\\sdk\\ndk-bundle\\sources\\cxx-stl\\llvm-libc++\\include -isystem D:\\MySoftWare\\Android\\sdk\\ndk-bundle\\sources\\android\\support\\include -isystem D:\\MySoftWare\\Android\\sdk\\ndk-bundle\\sources\\cxx-stl\\llvm-libc++abi\\include  -isystem D:/MySoftWare/Android/sdk/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "D:/Project/MyStudioProject/Study/Study/ndk/src/main/cpp/config.cpp",
+					"workingDirectory" : "D:/Project/MyStudioProject/Study/Study/ndk/.cxx/cmake/debug/armeabi-v7a"
+				}
+			],
+			"output" : "D:/Project/MyStudioProject/Study/Study/ndk/build/intermediates/cmake/debug/obj/armeabi-v7a/libconfig.so",
+			"toolchain" : "2275900503"
+		}
+	},
+	"toolchains" : 
+	{
+		"2275900503" : 
+		{
+			"cCompilerExecutable" : "D:/MySoftWare/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "D:/MySoftWare/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+		}
+	}
+}

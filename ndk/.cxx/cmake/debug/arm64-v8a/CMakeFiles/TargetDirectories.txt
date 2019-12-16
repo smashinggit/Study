@@ -1,0 +1,3 @@
+D:/Project/MyStudioProject/Study/Study/ndk/.cxx/cmake/debug/arm64-v8a/CMakeFiles/config.dir
+D:/Project/MyStudioProject/Study/Study/ndk/.cxx/cmake/debug/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/Project/MyStudioProject/Study/Study/ndk/.cxx/cmake/debug/arm64-v8a/CMakeFiles/rebuild_cache.dir

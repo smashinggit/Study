@@ -35,6 +35,12 @@
             android:text="EasyPermission" />
 
         <Button
+            android:id="@+id/btnMyPermission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="封装后的Permission" />
+
+        <Button
             android:id="@+id/btnTelephony"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,6 +57,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="database" />
+
+        <Button
+            android:id="@+id/btnUI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="UI" />
 
     </LinearLayout>
 </ScrollView>

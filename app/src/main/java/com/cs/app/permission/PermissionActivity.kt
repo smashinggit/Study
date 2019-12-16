@@ -86,7 +86,7 @@ class PermissionActivity : Activity() {
                 /**
                  * 当你的应用调用requestPermissions()方法时，系统会向用户展示一个标准对话框，
                  * 你的应用不能修改也不能自定义这个对话框，如果你需要给用户一些额外的信息和解释你就需要在
-                 * 调用requestPermissions()之前像上面一样" 解释为什么应用需要这些权限"
+                 * 调用requestPermissions()之前像上面一样 "解释为什么应用需要这些权限"
                  */
                 requestPermission()
             }

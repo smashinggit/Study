@@ -10,7 +10,7 @@ import android.provider.Settings
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.Toast
 import com.cs.app.R
-import com.cs.common.base.BaseActivity
+import com.cs.library_architecture.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_permission.*
 import pub.devrel.easypermissions.EasyPermissions
 
@@ -74,7 +74,7 @@ class EasyPermissionActivity : BaseActivity(), EasyPermissions.PermissionCallbac
         log("onPermissionsGranted $requestCode $perms")
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         //1. 初始设置
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)

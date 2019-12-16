@@ -1,0 +1,16 @@
+{
+  "buildFiles": [
+    "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "D:\\MySoftWare\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\release\\armeabi-v7a --target clean"
+  ],
+  "libraries": {
+    "config-Release-armeabi-v7a": {
+      "artifactName": "config",
+      "buildCommand": "D:\\MySoftWare\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\.cxx\\cmake\\release\\armeabi-v7a --target config",
+      "abi": "armeabi-v7a",
+      "output": "D:\\Project\\MyStudioProject\\Study\\Study\\ndk\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\\libconfig.so"
+    }
+  }
+}

@@ -2,14 +2,14 @@ package com.cs.app.telephony
 
 import android.Manifest
 import android.content.Context
-import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import android.telephony.TelephonyManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.cs.app.R
-import com.cs.common.base.BaseActivity
+import com.cs.library_architecture.base.BaseActivity
+import com.cs.library_architecture.permission.PermissionHelper
 import kotlinx.android.synthetic.main.activity_telephony.*
 
 
@@ -23,6 +23,9 @@ class TelephonyActivity : BaseActivity() {
     private val phoneType = arrayOf("未知", "2G", "3G", "4G")
     private val simState = arrayOf("状态未知", "无SIM卡", "被PIN加锁", "被PUK加锁", "被NetWork PIN加锁", "已准备好")
     lateinit var mTelephonyManager: TelephonyManager
+    private val mPermissionHelper by lazy {
+        PermissionHelper()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,17 +36,19 @@ class TelephonyActivity : BaseActivity() {
         check()
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun check() {
-        if (PackageManager.PERMISSION_GRANTED == ContextCompat.checkSelfPermission(this, Manifest.permission_group.PHONE)) {
-            showState()
-        } else {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission_group.PHONE)) {
-                Toast.makeText(this, "没有权限，请前往设置中打开1", Toast.LENGTH_SHORT).show()
-            } else {
-                requestPermission()
-            }
-        }
+        mPermissionHelper.with(this)
+                .onGranted {
+                    showState()
+                }
+                .onDenied {
+                    Toast.makeText(this, "没有权限，请前往设置中打开1", Toast.LENGTH_SHORT).show()
+                }
+                .checkPermissions(arrayOf(Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.READ_CONTACTS,
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION))
     }
 
     private fun showState() {
@@ -57,25 +62,13 @@ class TelephonyActivity : BaseActivity() {
                 "SIM卡序列号：${mTelephonyManager.simSerialNumber} \n" +
                 "SIM卡状态：${simState[mTelephonyManager.simState]}"
 
-
         tvState.text = state
     }
 
-    private fun requestPermission() {
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission_group.PHONE), 100)
-    }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-
-        when (requestCode) {
-            100 -> {
-                if (PackageManager.PERMISSION_GRANTED == grantResults[0]) {
-                    showState()
-                } else {
-                    Toast.makeText(this, "没有权限，请前往设置中打开", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        mPermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
 }

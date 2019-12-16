@@ -6,14 +6,14 @@ android {
 
 
     defaultConfig {
-        applicationId "com.cs.test"
+        applicationId "com.cs.study"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -36,7 +36,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${rootProject.ext.appcompatVersion}"
     implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintlayoutVersion}"
 
-    implementation project(":common")
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation project(':library_architecture')
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
 }

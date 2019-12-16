@@ -1,9 +1,9 @@
 package com.cs.app
 
-import android.app.Application
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import androidx.multidex.MultiDexApplication
 import com.cs.app.life.MyActivityManager
 
 /**
@@ -12,7 +12,7 @@ import com.cs.app.life.MyActivityManager
  * data : 2019/6/5
  * desc:
  */
-class App : Application() {
+class App : MultiDexApplication() {
 
     companion object {
         lateinit var INSTANCE: App

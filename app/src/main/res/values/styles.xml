@@ -1,11 +1,45 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+
+    <style name="toolbar_title">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="base_toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <!-- ToolBar样式.-->
+    <style name="toolbar_them" parent="base_toolbar">
+        <!--修改toolbar的Title颜色-->
+        <item name="android:textColorPrimary">#fff</item>
+        <!--文字居中-->
+        <item name="android:gravity">center</item>
+        <!--修改toolbar的图标颜色.-->
+        <item name="colorControlNormal">#fff</item>
+    </style>
+
+    <!-- ToolBar菜单样式.-->
+    <style name="popup_theme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <!--设置字体颜色-->
+        <item name="android:textColor">#222</item>
+        <!--文字居中-->
+        <item name="android:gravity">center</item>
+        <!--是否覆盖锚点-->
+        <item name="overlapAnchor">false</item>
+    </style>
+
 
 </resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="arch_textSize_1">36dp</dimen>
+    <dimen name="arch_textSize_2">30dp</dimen>
+    <dimen name="arch_textSize_3">16dp</dimen>
+    <dimen name="arch_textSize_4">12dp</dimen>
+
+</resources>

@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cs.app.R
-import com.cs.common.base.BaseActivity
+import com.cs.library_architecture.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_database.*
 import kotlinx.android.synthetic.main.item_user.view.*
 

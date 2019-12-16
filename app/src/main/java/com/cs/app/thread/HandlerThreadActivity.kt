@@ -5,7 +5,7 @@ import android.os.Handler
 import android.os.HandlerThread
 import android.os.Message
 import com.cs.app.R
-import com.cs.common.base.BaseActivity
+import com.cs.library_architecture.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_handlerthread.*
 
 /**

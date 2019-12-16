@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.os.Environment
 import androidx.annotation.RequiresApi
 import com.cs.app.R
-import com.cs.common.base.BaseActivity
+import com.cs.library_architecture.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_file.*
 import java.io.File
 
