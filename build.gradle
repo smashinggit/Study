@@ -20,7 +20,6 @@ buildscript {
 
         navigationVersion = '2.2.0-alpha01'
         roomVersion = '2.2.0-alpha01'
-        lifecycleVersion = '2.2.0-alpha01'
 
         glideVersion = "4.9.0"
 

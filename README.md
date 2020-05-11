@@ -42,6 +42,7 @@
 ## Permission
 1. 动态权限申请
 2. EasyPermission 的使用
+3. [自己封装一个Permission库](https://www.jianshu.com/p/79b0838cc069)
 
 ## CoordinatorLayout + AppBarLayout + CollapsingToolbarLayout
 1. Toolbar的滑动隐藏

@@ -1,3 +1,0 @@
-D:/Project/MyStudioProject/Study/Study/ndk/.cxx/cmake/debug/x86/CMakeFiles/config.dir
-D:/Project/MyStudioProject/Study/Study/ndk/.cxx/cmake/debug/x86/CMakeFiles/edit_cache.dir
-D:/Project/MyStudioProject/Study/Study/ndk/.cxx/cmake/debug/x86/CMakeFiles/rebuild_cache.dir

@@ -1,1 +1,2 @@
-include ':customizeview', ':app', ':statusbar', ':camera', ':agera', ':ndk', ':bitmap', ':library_base', ':recyclerview', ':library_architecture'
+include ':customizeview', ':app', ':statusbar', ':camera', ':agera', ':bitmap', ':library_base', ':recyclerview', ':library_architecture'
+include ':kotlin'
