@@ -30,7 +30,7 @@
 
 
 # Bitmap 工程
-1. [https://www.jianshu.com/p/eef3daeeecbc](https://www.jianshu.com/p/eef3daeeecbc)
+1. [Android Bitmap 详解：关于 Bitamp 你所要知道的一切](https://www.jianshu.com/p/eef3daeeecbc)
 2. glide 的使用
 3. subsampling-scale-image-view 加载超大图
 
