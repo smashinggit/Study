@@ -30,7 +30,7 @@
 
 
 # Bitmap 工程
-1. bitmap 的压缩
+1. [https://www.jianshu.com/p/eef3daeeecbc](https://www.jianshu.com/p/eef3daeeecbc)
 2. glide 的使用
 3. subsampling-scale-image-view 加载超大图
 
