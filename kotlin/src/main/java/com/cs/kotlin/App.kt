@@ -1,6 +1,5 @@
 package com.cs.kotlin
 
-import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 
 /**

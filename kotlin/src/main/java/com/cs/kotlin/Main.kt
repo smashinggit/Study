@@ -19,8 +19,6 @@ object Main {
 //            println("work1() + work2() = ${deferred1.await() + deferred2.await()}")
 //        }
 
-        Thread{
-        }
 
         Thread.sleep(3000)
 

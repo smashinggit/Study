@@ -6,10 +6,7 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.cs.kotlin.api.Api
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
         val retrofit = Retrofit.Builder()
                 .baseUrl("https://api.github.com/")
                 .addConverterFactory(FastJsonConverterFactory.create())
@@ -33,6 +32,14 @@ class MainActivity : AppCompatActivity() {
 
             textView.text = repos[0].name
             println("第一个仓库名：${repos[0].name}")
+        }
+
+        GlobalScope.launch {
+
+        }
+
+        runBlocking {
+
         }
     }
 

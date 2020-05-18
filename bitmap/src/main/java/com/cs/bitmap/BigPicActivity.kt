@@ -23,13 +23,10 @@ class BigPicActivity : Activity() {
         ivLargeImageView.setInputStream(inputStream)
 
 
-
         //显示图片的某一部分
         // test()
 
     }
-
-
 
 
     /**

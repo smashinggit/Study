@@ -6,7 +6,7 @@ buildscript {
     apply from: "versions.gradle"
 
     ext {
-        minSdkVersion = 15
+        minSdkVersion = 19
         targetSdkVersion = 28
         compileSdkVersion = 28
         buildToolsVersion = "29.0.2"

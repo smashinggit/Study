@@ -1,7 +1,7 @@
 package com.cs.bitmap
 
 import android.os.Bundle
-import com.cs.common.base.BaseActivity
+import com.cs.library_architecture.base.BaseActivity
 import com.davemorrissey.labs.subscaleview.ImageSource
 import kotlinx.android.synthetic.main.activity_subsampling.*
 
