@@ -50,10 +50,4 @@
 3. 图片滑动 + toolbar变化 + 导航栏悬浮
 
 
-# 后台任务 todo
-![如何选择后台任务](https://developer.android.google.cn/images/guide/background/bg-job-choose.svg)
-## WorkManager
-## Foreground services
-## AlarmManager
-## DownloadManager
 
