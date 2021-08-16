@@ -2,7 +2,6 @@ package com.cs.library_architecture.utils
 
 import android.graphics.*
 import android.os.Build
-import retrofit2.http.OPTIONS
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream

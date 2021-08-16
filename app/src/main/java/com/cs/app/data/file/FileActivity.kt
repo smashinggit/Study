@@ -114,7 +114,7 @@ class FileActivity : BaseActivity() {
                 "2. 私有程序目录 -> \$根目录/Android/data/包名 \n" +
                 "3. 私有文件目录(不带参数) (getExternalFilesDirs) -> ${getExternalFilesDirs(null)[0].absolutePath} \n" +
                 "4. 私有文件目录(如：参数Picture) (getExternalFilesDirs(Environment.DIRECTORY_PICTURES)) -> ${getExternalFilesDirs(Environment.DIRECTORY_PICTURES)[0].absolutePath} \n" +
-                "5. 私有缓存目录 (externalCacheDir) -> ${externalCacheDir.absolutePath} \n"
+                "5. 私有缓存目录 (externalCacheDir) -> ${externalCacheDir?.absolutePath} \n"
 
         tvApplication.text = applicationDirs
         loge(applicationDirs)

@@ -1,33 +1,39 @@
 ext {
     //编译
-    compileSdkVersion = 28
-    buildToolsVersion = "29.0.2"
-    minSdkVersion = 15
-    targetSdkVersion = 28
+    compileSdkVersion = 30
+    targetSdkVersion = 30
+    minSdkVersion = 21
+    buildToolsVersion = "30.0.3"
 
-    //kotlin
-    kotlinVersion = "1.3.50"
-    kotlinReflect = "1.3.50"
-    coreKtx = "1.2.0-alpha04"
-
-    appcompat = "1.1.0"
+    //通用
+    appcompat = "1.3.0"
     material = "1.0.0"
     constraintlayout = "1.1.3"
-    recyclerview = "1.0.0"
-
+    recyclerview = "1.2.0"
     multidex = "1.0.3"
 
-    //http
-    okhttp = "4.1.1"
-    retrofit = "2.6.1"
-    adapter_rxjava2 = "2.3.0"
-    converter_fastjson = "2.1.0"
-    fastjson = "1.1.71"
+    //kotlin
+    kotlin = "1.4.10"
+    kotlinCoreKtx = "1.3.2"
+
+
+    // http
+    okhttp = "4.9.1"
+    retrofit = "2.9.0"
+    converter_gson = "2.9.0"
+    converter_fastjson = "2.2.0"
+    fastjson = "1.1.72.android"
     okio = "2.4.0"
 
-    //architecture
+    // Jetpack
     navigation = "2.2.0-alpha02"
     lifecycleVersion = "2.2.0"
+    lifecycle_process = "2.2.0"
+    lifecycle_version = "2.3.1"
+
+    // 协程
+    coroutines = "1.4.1"
+    coroutinesKTX = "2.3.0-beta01"
 
     //ARouter
     arouterApi = "1.5.0"
@@ -38,6 +44,6 @@ ext {
     smartRefreshLayout = "1.1.0"
 
     //Glide
-    glideVersion = "4.9.0"
+    glide = "4.12.0"
 
 }

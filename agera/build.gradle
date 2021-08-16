@@ -30,7 +30,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(":library_base")
+    implementation project(":common")
 
     implementation 'com.google.android.agera:agera:1.4.0'
     implementation 'me.drakeet.retrofit2:adapter-agera:2.2.0-beta'

@@ -8,10 +8,10 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.core.content.FileProvider
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.cs.camera.util.DecodeImgTask
 import com.cs.camera.util.FileUtil
 import kotlinx.android.synthetic.main.activity_capture.*
@@ -34,7 +34,6 @@ class CaptureActivity : AppCompatActivity() {
         const val REQUEST_CODE_ALBUM = 5
         const val REQUEST_CODE_VIDEO = 6
 
-        var imgUri: Uri? = null
         var imageFile: File? = null
         var imageCropFile: File? = null
     }
@@ -46,8 +45,8 @@ class CaptureActivity : AppCompatActivity() {
         btnCaptureSmall.setOnClickListener { gotoCaptureSmall() }    //拍照(返回缩略图)
         btnCaptureRaw.setOnClickListener { gotoCaptureRaw() }        //拍照(返回原始图)
         btnCaptureAndClip.setOnClickListener { gotoCaptureCrop() }   //拍照 + 裁切
-        btnAlbumAndClip.setOnClickListener { gotoGallery() }   //拍照 + 裁切
-        btnCaptureVideo.setOnClickListener { gotoCaptureVideo() }   //录视频 + 播放
+        btnAlbumAndClip.setOnClickListener { gotoGallery() }         //相册 + 裁切
+        btnCaptureVideo.setOnClickListener { gotoCaptureVideo() }    //录视频 + 播放
     }
 
 
@@ -66,8 +65,8 @@ class CaptureActivity : AppCompatActivity() {
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                imgUri = FileProvider.getUriForFile(this, AUTHORITY, it)
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                val imgUri = FileProvider.getUriForFile(this, AUTHORITY, it)
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imgUri)
             } else {
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(it))
@@ -89,7 +88,7 @@ class CaptureActivity : AppCompatActivity() {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                imgUri = FileProvider.getUriForFile(this, AUTHORITY, it)
+                val imgUri = FileProvider.getUriForFile(this, AUTHORITY, it)
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imgUri)
             } else {
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(it))
@@ -112,23 +111,30 @@ class CaptureActivity : AppCompatActivity() {
             intent.putExtra("aspectX", 1)    //X方向上的比例
             intent.putExtra("aspectY", 1)    //Y方向上的比例
             intent.putExtra("outputX", 500)  //裁剪区的宽
-            intent.putExtra("outputY", 500) //裁剪区的高
+            intent.putExtra("outputY", 500)  //裁剪区的高
             intent.putExtra("scale ", true)  //是否保留比例
             intent.putExtra("return-data", false)
             intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString())
+            intent.setDataAndType(sourceUri, "image/*")
 
+            // 7.0 使用 FileProvider 并赋予临时权限
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) //添加这一句表示对目标应用临时授权该Uri所代表的文件
-                intent.setDataAndType(sourceUri, "image/*")  //设置数据源
-
-                var imgCropUri = Uri.fromFile(it)
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, imgCropUri) //设置输出  不需要ContentUri,否则失败
-                Log.d("tag", "输入 $sourceUri")
-                Log.d("tag", "输出 ${Uri.fromFile(it)}")
-            } else {
-                intent.setDataAndType(Uri.fromFile(imageFile!!), "image/*")
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(it))
+                intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
             }
+
+            // 11.0无法访问私有域，所以这里要确保裁剪后的文件保存在公有目录中
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                // 这里要保证输出的文件是在公有目录
+                // 由于此demo中默认保存的就是公有目录，所以这里不做任何操作，如果是自己的项目，请根据具体情况修改
+
+            } else {
+            }
+
+            val outputUri = Uri.fromFile(it)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, outputUri)            //设置输出
+
+            Log.d("tag", "输入 $sourceUri")
+            Log.d("tag", "输出 $outputUri")
             startActivityForResult(intent, REQUEST_CODE_CAPTURE_CROP)
         }
     }
@@ -136,14 +142,14 @@ class CaptureActivity : AppCompatActivity() {
 
     //打开系统相册
     private fun gotoGallery() {
-        var intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, REQUEST_CODE_ALBUM)
     }
 
 
     //录制视频
     private fun gotoCaptureVideo() {
-        var intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
+        val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
         if (intent.resolveActivity(packageManager) != null)
             startActivityForResult(intent, REQUEST_CODE_VIDEO)
     }
@@ -165,9 +171,11 @@ class CaptureActivity : AppCompatActivity() {
                     }
                 }
 
-                REQUEST_CODE_CAPTURE -> { //拍照成功后，裁剪
-                    val sourceUri = FileProvider.getUriForFile(this, AUTHORITY, imageFile!!) //通过FileProvider创建一个content类型的Uri
-                    gotoCrop(sourceUri)
+                REQUEST_CODE_CAPTURE -> {       //拍照成功后，裁剪
+                    imageFile?.let {
+                        val sourceUri = FileProvider.getUriForFile(this, AUTHORITY, it) //通过FileProvider创建一个content类型的Uri
+                        gotoCrop(sourceUri)
+                    }
                 }
 
                 REQUEST_CODE_CAPTURE_CROP -> {   //裁剪成功后，显示结果
@@ -178,13 +186,13 @@ class CaptureActivity : AppCompatActivity() {
 
                 REQUEST_CODE_ALBUM -> { //从相册选择照片后，裁剪
                     data?.let {
-                        gotoCrop(it.data)
+                        gotoCrop(it.data!!)
                     }
                 }
 
                 REQUEST_CODE_VIDEO -> {   //录制视频成功后播放
                     data?.let {
-                        var uri = it.data
+                        val uri = it.data
                         videoView.visibility = View.VISIBLE
                         videoView.setVideoURI(uri)
                         videoView.start()

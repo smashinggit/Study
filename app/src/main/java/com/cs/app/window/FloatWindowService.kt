@@ -95,7 +95,7 @@ class FloatWindowService : Service() {
 
         //TODO 注意，getRunningTasks 在5.0之后只能获取到桌面程序和本身的信息，其他的应用信息无法获取
         val tasks = activityManager.getRunningTasks(1)
-        val name = tasks[0].topActivity.packageName
+        val name = tasks[0].topActivity?.packageName
 
 //        log("当前运行的程序包名 $name")
         return getHomes().contains(name)

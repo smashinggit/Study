@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin"
+    implementation "androidx.core:core-ktx:$kotlinCoreKtx"
+
+    api "androidx.appcompat:appcompat:$appcompat"
+    api "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    api "com.google.android.material:material:$material"
+    api "androidx.recyclerview:recyclerview:$recyclerview"
+
+    // Jetpack
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"     // LiveData
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"    // ViewModel
+    api "androidx.lifecycle:lifecycle-process:$lifecycle_process"          // Lifecycle#ProcessLifecycleOwner 处理全局生命周期
+    api "androidx.navigation:navigation-fragment-ktx:$navigation"         // Navigation
+    api "androidx.navigation:navigation-ui-ktx:$navigation"
+
+    //协程
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$coroutinesKTX"  //ViewModelScope
+    api "androidx.lifecycle:lifecycle-runtime-ktx:$coroutinesKTX"    //LifeCycleScope
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$coroutinesKTX"
+
+    api "com.squareup.okhttp3:okhttp:$okhttp"
+    api "com.squareup.okhttp3:logging-interceptor:$okhttp"
+    api "com.squareup.retrofit2:retrofit:$retrofit"
+    api "com.squareup.retrofit2:converter-gson:$converter_gson"
+    api "org.ligboy.retrofit2:converter-fastjson-android:$converter_fastjson"
+    api "com.alibaba:fastjson:$fastjson"
+
+    api "com.github.bumptech.glide:glide:$glide"
+
+}

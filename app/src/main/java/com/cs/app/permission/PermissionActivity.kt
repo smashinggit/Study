@@ -9,10 +9,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.Settings
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.widget.Toast
 import com.cs.app.R
 import com.cs.app.log
 import kotlinx.android.synthetic.main.activity_permission.*
@@ -134,7 +134,8 @@ class PermissionActivity : Activity() {
                 .show()
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>?, grantResults: IntArray?) {
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         when (requestCode) {
             PERMISSION_REQUEST_CODE -> {
 
@@ -169,10 +170,12 @@ class PermissionActivity : Activity() {
         val contacts = ArrayList<Contact>()
 
         val cursor = contentResolver.query(phoneUri, arrayOf(NUM, NAME), null, null, null)
-        while (cursor.moveToNext()) {
-            val name = cursor.getString(cursor.getColumnIndex(NAME))
-            val num = cursor.getString(cursor.getColumnIndex(NUM))
-            contacts.add(Contact(name, num))
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                val name = cursor.getString(cursor.getColumnIndex(NAME))
+                val num = cursor.getString(cursor.getColumnIndex(NUM))
+                contacts.add(Contact(name, num))
+            }
         }
         return contacts
     }

@@ -6,15 +6,16 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.ImageFormat
 import android.graphics.SurfaceTexture
+import android.hardware.Camera
 import android.hardware.camera2.*
 import android.media.ImageReader
 import android.media.ImageReader.OnImageAvailableListener
 import android.os.Handler
 import android.os.HandlerThread
-import androidx.core.content.ContextCompat
 import android.util.Size
 import android.view.Surface
 import android.view.TextureView
+import androidx.core.content.ContextCompat
 import com.cs.camera.log
 import com.cs.camera.toast
 import com.cs.camera.util.BitmapUtils
@@ -62,18 +63,18 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
         mCameraHandler = Handler(handlerThread.looper)
 
         mTextureView.surfaceTextureListener = object : TextureView.SurfaceTextureListener {
-            override fun onSurfaceTextureSizeChanged(surface: SurfaceTexture?, width: Int, height: Int) {
+            override fun onSurfaceTextureSizeChanged(surface: SurfaceTexture, width: Int, height: Int) {
             }
 
-            override fun onSurfaceTextureUpdated(surface: SurfaceTexture?) {
+            override fun onSurfaceTextureUpdated(surface: SurfaceTexture) {
             }
 
-            override fun onSurfaceTextureDestroyed(surface: SurfaceTexture?): Boolean {
+            override fun onSurfaceTextureDestroyed(surface: SurfaceTexture): Boolean {
                 releaseCamera()
                 return true
             }
 
-            override fun onSurfaceTextureAvailable(surface: SurfaceTexture?, width: Int, height: Int) {
+            override fun onSurfaceTextureAvailable(surface: SurfaceTexture, width: Int, height: Int) {
                 initCameraInfo()
             }
         }
@@ -107,12 +108,12 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
         }
 
         //获取摄像头方向
-        mCameraSensorOrientation = mCameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)
+        mCameraSensorOrientation = mCameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)!!
         //获取StreamConfigurationMap，它是管理摄像头支持的所有输出格式和尺寸
         val configurationMap = mCameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)
 
-        val savePicSize = configurationMap.getOutputSizes(ImageFormat.JPEG)          //保存照片尺寸
-        val previewSize = configurationMap.getOutputSizes(SurfaceTexture::class.java) //预览尺寸
+        val savePicSize = configurationMap?.getOutputSizes(ImageFormat.JPEG)          //保存照片尺寸
+        val previewSize = configurationMap?.getOutputSizes(SurfaceTexture::class.java) //预览尺寸
 
         val exchange = exchangeWidthAndHeight(mDisplayRotation, mCameraSensorOrientation)
 
@@ -121,16 +122,16 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
                 if (exchange) mSavePicSize.width else mSavePicSize.height,
                 if (exchange) mSavePicSize.height else mSavePicSize.width,
                 if (exchange) mSavePicSize.width else mSavePicSize.height,
-                savePicSize.toList())
+                savePicSize?.toList() ?: emptyList())
 
         mPreviewSize = getBestSize(
                 if (exchange) mPreviewSize.height else mPreviewSize.width,
                 if (exchange) mPreviewSize.width else mPreviewSize.height,
                 if (exchange) mTextureView.height else mTextureView.width,
                 if (exchange) mTextureView.width else mTextureView.height,
-                previewSize.toList())
+                previewSize?.toList() ?: emptyList())
 
-        mTextureView.surfaceTexture.setDefaultBufferSize(mPreviewSize.width, mPreviewSize.height)
+        mTextureView.surfaceTexture?.setDefaultBufferSize(mPreviewSize.width, mPreviewSize.height)
 
         log("预览最优尺寸 ：${mPreviewSize.width} * ${mPreviewSize.height}, 比例  ${mPreviewSize.width.toFloat() / mPreviewSize.height}")
         log("保存图片最优尺寸 ：${mSavePicSize.width} * ${mSavePicSize.height}, 比例  ${mSavePicSize.width.toFloat() / mSavePicSize.height}")
@@ -148,8 +149,9 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
         val byteBuffer = image.planes[0].buffer
         val byteArray = ByteArray(byteBuffer.remaining())
         byteBuffer.get(byteArray)
-        it.close()
-        BitmapUtils.savePic(byteArray, mCameraSensorOrientation == 270, { savedPath, time ->
+        image.close()
+
+        BitmapUtils.savePic(byteArray, "camera2",mCameraSensorOrientation == 270, { savedPath, time ->
             mActivity.runOnUiThread {
                 mActivity.toast("图片保存成功！ 保存路径：$savedPath 耗时：$time")
             }
@@ -202,7 +204,7 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
 
         // 为相机预览，创建一个CameraCaptureSession对象
         cameraDevice.createCaptureSession(arrayListOf(surface, mImageReader?.surface), object : CameraCaptureSession.StateCallback() {
-            override fun onConfigureFailed(session: CameraCaptureSession?) {
+            override fun onConfigureFailed(session: CameraCaptureSession) {
                 mActivity.toast("开启预览会话失败！")
             }
 
@@ -216,13 +218,13 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
 
     private val mCaptureCallBack = object : CameraCaptureSession.CaptureCallback() {
 
-        override fun onCaptureCompleted(session: CameraCaptureSession, request: CaptureRequest?, result: TotalCaptureResult) {
+        override fun onCaptureCompleted(session: CameraCaptureSession, request: CaptureRequest, result: TotalCaptureResult) {
             super.onCaptureCompleted(session, request, result)
             canExchangeCamera = true
             canTakePic = true
         }
 
-        override fun onCaptureFailed(session: CameraCaptureSession?, request: CaptureRequest?, failure: CaptureFailure?) {
+        override fun onCaptureFailed(session: CameraCaptureSession, request: CaptureRequest, failure: CaptureFailure) {
             super.onCaptureFailed(session, request, failure)
             log("onCaptureFailed")
             mActivity.toast("开启预览失败！")
@@ -239,7 +241,7 @@ class Camera2Helper(val mActivity: Activity, private val mTextureView: TextureVi
         mCameraDevice?.apply {
 
             val captureRequestBuilder = createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE)
-            captureRequestBuilder.addTarget(mImageReader?.surface)
+            captureRequestBuilder.addTarget(mImageReader!!.surface)
 
             captureRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE) // 自动对焦
             captureRequestBuilder.set(CaptureRequest.CONTROL_AE_MODE, CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH)     // 闪光灯

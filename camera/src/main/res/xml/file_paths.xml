@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
-    <!--path：需要临时授权访问的路径（.代表所有路径）-->
-    <!--name：就是你给这个访问路径起个名字-->
-    <external-path name="external-path" path="CameraDemo" />
+    <!-- 表示应用程序内部存储区中的文件/子目录中的文件 物理路径相当于Context.getFilesDir() + /CameraDemo/ -->
+    <!--    <files-path-->
+    <!--        name="files-path"-->
+    <!--        path="CameraDemo" />-->
+
+    <!-- 表示应用程序内部存储区缓存子目录中的文件 物理路径相当于 Context.getCacheDir() + /CameraDemo/-->
+    <!--    <cache-path-->
+    <!--        name="cache-path"-->
+    <!--        path="CameraDemo" />-->
+
+    <!-- 表示应用程序外部存储区根目录中的文件 物理路径相当于**Context.getExternalFilesDir(String) **+ /CameraDemo/ -->
+    <external-files-path
+        name="external-files-path"
+        path="CameraDemo" />
+
+    <!-- 表示应用程序外部缓存区根目录中的文件 物理路径相当于 Context.getExternalCacheDir() + /CameraDemo/  -->
+    <!--    <external-cache-path-->
+    <!--        name="external-cache-path"-->
+    <!--        path="CameraDemo" />-->
+
+
+    <!-- 表示外部存储区根目录中的文件 物理路径相当于Environment.getExternalStorageDirectory() + /CameraDemo/ -->
+<!--    <external-path-->
+<!--        name="external-path"-->
+<!--        path="CameraDemo" />-->
+
+    <!-- 注意，FileProvider 没有对外置SD卡公共目录的支持，通过这个标签可以正常实现，但是AS报警告说不要这样做，目前没找到更好的解决办法   -->
+    <root-path
+        name="root-path"
+        path="/" />
+
 </paths>

@@ -1,22 +1,15 @@
 package com.cs.camera.camera1
 
-import android.graphics.BitmapFactory
 import android.graphics.RectF
 import android.hardware.Camera
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.cs.camera.R
-import com.cs.camera.log
 import com.cs.camera.toast
 import com.cs.camera.util.BitmapUtils
-import com.cs.camera.util.FileUtil
 import kotlinx.android.synthetic.main.activity_camera.*
-import okio.Okio
-import okio.buffer
-import okio.sink
-import kotlin.concurrent.thread
 
 /**
  * author :  chensen
@@ -83,30 +76,16 @@ class CameraActivity : AppCompatActivity() {
     }
 
     private fun savePic(data: ByteArray?) {
-        thread {
-            try {
-                val temp = System.currentTimeMillis()
-                val picFile = FileUtil.createCameraFile()
-                if (picFile != null && data != null) {
-                    val rawBitmap = BitmapFactory.decodeByteArray(data, 0, data.size)
-                    val resultBitmap = if (mCameraHelper.mCameraFacing == Camera.CameraInfo.CAMERA_FACING_FRONT)
-                        BitmapUtils.mirror(BitmapUtils.rotate(rawBitmap, 270f))
-                    else
-                        BitmapUtils.rotate(rawBitmap, 90f)
 
-                    picFile.sink().buffer().write(BitmapUtils.toByteArray(resultBitmap)).close()
-                    runOnUiThread {
-                        toast("图片已保存! ${picFile.absolutePath}")
-                        log("图片已保存! 耗时：${System.currentTimeMillis() - temp}    路径：  ${picFile.absolutePath}")
-                    }
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                runOnUiThread {
-                    toast("保存图片失败！")
-                }
+        BitmapUtils.savePic(data, "camera1", mCameraHelper.mCameraFacing == Camera.CameraInfo.CAMERA_FACING_FRONT, { savedPath, time ->
+            runOnUiThread {
+                toast("图片保存成功！ 保存路径：$savedPath 耗时：$time")
             }
-        }
+        }, { msg ->
+            runOnUiThread {
+                toast("图片保存失败！ $msg")
+            }
+        })
     }
 
     override fun onDestroy() {

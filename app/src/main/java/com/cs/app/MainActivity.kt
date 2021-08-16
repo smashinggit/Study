@@ -1,13 +1,11 @@
 package com.cs.app
 
-import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.cs.app.data.database.DataBaseActivity
 import com.cs.app.data.file.FileActivity
-import com.cs.app.permission.EasyPermissionActivity
 import com.cs.app.permission.MyPermissionActivity
 import com.cs.app.permission.PermissionActivity
 import com.cs.app.telephony.TelephonyActivity
@@ -44,7 +42,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnPermission.setOnClickListener { startActivity(Intent(this, PermissionActivity::class.java)) }
-        btnEasyPermission.setOnClickListener { startActivity(Intent(this, EasyPermissionActivity::class.java)) }
         btnMyPermission.setOnClickListener { startActivity(Intent(this, MyPermissionActivity::class.java)) }
         btnTelephony.setOnClickListener { startActivity(Intent(this, TelephonyActivity::class.java)) }
         btnFile.setOnClickListener { startActivity(Intent(this, FileActivity::class.java)) }

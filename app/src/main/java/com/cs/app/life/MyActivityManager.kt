@@ -62,31 +62,31 @@ object MyActivityManager : Application.ActivityLifecycleCallbacks {
         finishActivity(mActivityStack.lastElement())
     }
 
-    override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
-        log("onActivitySaveInstanceState ${activity?.componentName}")
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
+        log("onActivitySaveInstanceState ${activity.componentName}")
     }
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
-        log("onActivityCreated ${activity?.componentName}")
-        activity?.apply { mActivityStack.add(this) }
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+        log("onActivityCreated ${activity.componentName}")
+        activity.apply { mActivityStack.add(this) }
     }
 
-    override fun onActivityStarted(activity: Activity?) {
-        log("onActivityStarted ${activity?.componentName}")
+    override fun onActivityStarted(activity: Activity) {
+        log("onActivityStarted ${activity.componentName}")
         mActivityCount++
         isForground = true
     }
 
-    override fun onActivityResumed(activity: Activity?) {
-        log("onActivityResumed ${activity?.componentName}")
+    override fun onActivityResumed(activity: Activity) {
+        log("onActivityResumed ${activity.componentName}")
     }
 
-    override fun onActivityPaused(activity: Activity?) {
-        log("onActivityPaused ${activity?.componentName}")
+    override fun onActivityPaused(activity: Activity) {
+        log("onActivityPaused ${activity.componentName}")
     }
 
-    override fun onActivityStopped(activity: Activity?) {
-        log("onActivityStopped ${activity?.componentName}")
+    override fun onActivityStopped(activity: Activity) {
+        log("onActivityStopped ${activity.componentName}")
 
         mActivityCount--
         if (mActivityCount == 0) {
@@ -95,9 +95,9 @@ object MyActivityManager : Application.ActivityLifecycleCallbacks {
         }
     }
 
-    override fun onActivityDestroyed(activity: Activity?) {
-        log("onActivityDestroyed ${activity?.componentName}")
-        activity?.apply { removeActivity(activity) }
+    override fun onActivityDestroyed(activity: Activity) {
+        log("onActivityDestroyed ${activity.componentName}")
+        activity.apply { removeActivity(activity) }
     }
 
     fun log(msg: String) {

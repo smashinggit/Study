@@ -29,7 +29,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation project(":library_architecture")
+    implementation project(":common")
 }
 repositories {
     mavenCentral()

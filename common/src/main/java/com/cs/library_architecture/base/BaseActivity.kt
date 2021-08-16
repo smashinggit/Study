@@ -25,6 +25,10 @@ open class BaseActivity : AppCompatActivity() {
         Log.d("tag", msg)
     }
 
+    protected fun loge(msg: String) {
+        Log.e("tag", msg)
+    }
+
     protected fun log(tag: String, msg: String) {
         Log.e(tag, msg)
     }

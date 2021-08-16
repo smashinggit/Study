@@ -1,6 +1,6 @@
 package com.cs.bitmap
 
-import androidx.multidex.MultiDexApplication
+import android.app.Application
 
 /**
  * @Author : ChenSen
@@ -8,6 +8,6 @@ import androidx.multidex.MultiDexApplication
  *
  * @Desc :
  */
-class App : MultiDexApplication() {
+class App : Application() {
 
 }
